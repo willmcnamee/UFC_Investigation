@@ -1,0 +1,428 @@
+/* ============================================================
+   TOKENS — shared across the Fight Desk dossier series
+============================================================= */
+:root{
+  --canvas: #12151c;
+  --surface: #1b1f29;
+  --surface-2: #232838;
+  --paper: #ece6d8;
+  --ink: #f5f3ee;
+  --ink-dim: #cfd3dd;
+  --muted: #8b93a6;
+  --line: rgba(245,243,238,0.12);
+  --line-strong: rgba(245,243,238,0.22);
+
+  --amber: #e8a23d;
+  --green: #4c9a6a;
+  --crimson: #c1392b;
+  --paleblue: #6aa0d8;
+
+  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+
+  --container: 720px;
+  --wide: 1080px;
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *, *::before, *::after{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+body{
+  margin:0; background: var(--canvas); color: var(--ink);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a{ color: var(--amber); text-decoration-color: rgba(232,162,61,0.4); }
+a:hover{ text-decoration-color: currentColor; }
+::selection{ background: var(--amber); color: #14171f; }
+:focus-visible{ outline: 2px solid var(--amber); outline-offset: 3px; }
+h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.01em; margin: 0; }
+
+/* ============================================================
+   BUILD BANNER / MASTHEAD
+============================================================= */
+.build-banner{
+  position: sticky; top:0; z-index: 200;
+  background: var(--amber); color:#1a1400;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em;
+  text-align:center; padding: 6px 10px;
+}
+.masthead{
+  display:flex; align-items:center; justify-content: space-between;
+  padding: 18px clamp(20px, 5vw, 56px);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+.masthead__title{ font-family: var(--font-display); font-size: 15px; color: var(--ink); letter-spacing: 0.06em; }
+
+/* ============================================================
+   HERO
+============================================================= */
+.hero{
+  position: relative; min-height: 92vh;
+  display:flex; flex-direction: column; justify-content: center;
+  padding: 8vh clamp(20px, 6vw, 80px); overflow: hidden; isolation: isolate;
+}
+.hero__ring{
+  position:absolute; right: -20%; top: 50%; transform: translateY(-50%);
+  width: 62vw; height: 62vw; max-width: 820px; max-height: 820px;
+  border-radius: 50%; border: 1px solid var(--line-strong); z-index: -1;
+}
+.hero__ring::before{ content:""; position:absolute; inset: 60px; border-radius: 50%; border: 1px solid var(--line); }
+.hero__ring::after{ content:""; position:absolute; inset: 120px; border-radius: 50%; border: 1px dashed rgba(232,162,61,0.25); }
+.eyebrow{ font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin: 0 0 18px; }
+.hero__headline{ font-size: clamp(48px, 9vw, 118px); line-height: 0.94; font-weight: 700; max-width: 900px; }
+.hero__deck{ max-width: 540px; font-size: 19px; color: var(--ink-dim); margin: 26px 0 0; }
+.hero__byline{ margin-top: 34px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); display:flex; gap: 10px; align-items:center; }
+.hero__byline .dot{ color: var(--line-strong); }
+.scroll-cue{
+  position: absolute; left: clamp(20px, 6vw, 80px); bottom: 40px;
+  display:flex; align-items:center; gap: 10px; background:none; border:none;
+  color: var(--muted); font-family: var(--font-mono); font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+  animation: bob 2.2s ease-in-out infinite;
+}
+.scroll-cue svg{ color: var(--amber); }
+@keyframes bob{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(6px); } }
+
+/* ============================================================
+   LEDE
+============================================================= */
+.lede{ padding: 14vh clamp(20px, 6vw, 80px); display:flex; justify-content:center; }
+.lede__col{ max-width: var(--container); }
+.lede__tag{
+  font-family: var(--font-mono) !important; font-size: 11px !important;
+  color: var(--crimson) !important; text-transform: uppercase;
+  letter-spacing: 0.06em; margin: 0 0 14px !important;
+}
+.lede p{ font-size: 19px; color: var(--ink-dim); margin: 0 0 22px; }
+.drop-cap{ float:left; font-family: var(--font-display); font-size: 76px; line-height: 0.8; color: var(--amber); padding-right: 10px; margin-top: 4px; }
+
+/* ============================================================
+   METHOD / STAT CARDS
+============================================================= */
+.method{ padding: 0 clamp(20px, 6vw, 80px) 14vh; display:flex; justify-content:center; }
+.method__card{
+  max-width: var(--container); width:100%;
+  background: var(--paper); color: #201c14; border-radius: 2px;
+  padding: 32px clamp(24px, 4vw, 44px); position: relative;
+}
+.method__card::before{
+  content:"METHOD"; position:absolute; top:14px; right:18px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: rgba(32,28,20,0.4);
+}
+.method__kicker{ font-family: var(--font-display); text-transform: uppercase; font-size: 14px; letter-spacing: 0.08em; color: #7a4a1a; margin: 0 0 12px; }
+.method__card p{ margin: 0 0 12px; font-size: 16px; line-height: 1.6; }
+.method__card a{ color: #7a4a1a; }
+.method__note{ font-family: var(--font-mono); font-size: 12.5px; color: #6b6656; margin: 0 !important; }
+
+.method__card--dark{ background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+.method__card--dark::before{ color: var(--muted); }
+.method__card--dark .method__kicker{ color: var(--amber); }
+.method__card--dark p{ color: var(--ink-dim); }
+
+.statRow{ display:flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
+.statRow__card{
+  flex: 1 1 160px; background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 4px; padding: 16px 18px; font-family: var(--font-mono);
+}
+.statRow__card b{ display:block; font-size: 26px; color: var(--amber); }
+.statRow__card span{ display:block; font-size: 12px; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* ============================================================
+   CHART TOOLTIP (shared by every bar chart)
+============================================================= */
+.chartTooltip{
+  position: fixed; z-index: 500; pointer-events: none;
+  background: var(--surface-2); border: 1px solid var(--line-strong);
+  border-radius: 6px; padding: 10px 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  font-family: var(--font-mono); max-width: 230px;
+  opacity: 0; transform: translateY(4px);
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+.chartTooltip.is-visible{ opacity: 1; transform: translateY(0); }
+.chartTooltip__title{
+  font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px;
+}
+.chartTooltip__row{ display:flex; align-items: baseline; gap: 8px; margin: 3px 0; }
+.chartTooltip__value{ font-weight: 600; color: var(--ink); font-size: 13px; }
+.chartTooltip__label{ color: var(--ink-dim); font-size: 11px; }
+.chartTooltip__note{ margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line); font-size: 10.5px; color: var(--amber); }
+
+/* ============================================================
+   SHARED: sticky stage header / steps
+============================================================= */
+.stage__label{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--amber); text-transform: uppercase; margin: 0 0 10px; }
+.stage__title{ font-size: clamp(24px,3vw,32px); margin-bottom: 6px; }
+.stage__sub{ color: var(--muted); font-size: 14px; margin: 0 0 22px; }
+
+.legend{ display:flex; flex-wrap: wrap; gap: 18px; margin-top: 18px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.legend__item{ display:flex; align-items:center; gap:7px; }
+.dot{ width:8px; height:8px; border-radius:50%; display:inline-block; }
+.dot--green{ background: var(--green); }
+.dot--crimson{ background: var(--crimson); }
+.dot--amber{ background: var(--amber); }
+.dot--muted{ background: var(--muted); }
+.dot--paleblue{ background: var(--paleblue); }
+
+/* ============================================================
+   AXIS BAR CHART (Apex usage) â€” real y-axis of event counts,
+   sized to match the Vegas dominance chart below it
+============================================================= */
+.axisChart{
+  border: 1px solid var(--line); border-radius: 4px; background: var(--surface);
+  padding: 16px clamp(14px,2.4vw,24px) 12px;
+}
+.axisChart__inner{
+  display:flex; height: clamp(150px, 40vh, 420px);
+}
+.axisChart__yaxis{
+  position: relative; flex: 0 0 30px; width: 30px; margin-right: 12px;
+}
+.axisChart__tick{
+  position:absolute; left:0; right:0; transform: translateY(50%);
+  font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); text-align:right;
+}
+.axisChart__plot{ position: relative; flex: 1 1 auto; min-width: 0; }
+.axisChart__grid{ position:absolute; inset:0; }
+.axisChart__gridline{ position:absolute; left:0; right:0; height:1px; background: var(--line); }
+.axisChart__gridline--zero{ background: var(--line-strong); }
+.barChart__row{
+  position: relative; z-index: 1;
+  display:flex; align-items:flex-end; gap: clamp(6px, 1.4vw, 16px);
+  height: 100%;
+}
+.barChart__col{
+  flex: 1 1 0; display:flex; flex-direction: column; align-items:center;
+  justify-content: flex-end; height: 100%; gap: 8px;
+}
+.barChart__bar{
+  width: 100%; max-width: 46px; border-radius: 3px 3px 0 0;
+  background: var(--amber); height: 0%; cursor: pointer;
+  transition: height 0.7s cubic-bezier(.22,.9,.32,1), filter 0.15s ease, box-shadow 0.15s ease;
+}
+.barChart__bar--muted{ background: var(--paleblue); }
+.barChart__label{ font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+
+.barChart__bar.is-hovered,
+.miniChart__bar.is-hovered{
+  filter: brightness(1.2);
+  box-shadow: 0 0 0 2px rgba(245,243,238,0.4);
+}
+
+.apexstory__note{
+  margin: 14px 0 0; font-size: 13px; color: var(--muted);
+  font-family: var(--font-mono); border-left: 2px solid var(--amber); padding-left: 10px;
+  min-height: 18px;
+}
+
+/* ============================================================
+   APEX USAGE SCROLLYTELLING
+============================================================= */
+.apexstory{
+  position: relative; display:flex; gap: 40px;
+  padding: 0 clamp(20px, 6vw, 80px); max-width: 1400px; margin: 0 auto;
+}
+.apexstory__sticky{ flex: 1 1 62%; min-width: 0; }
+.apexstory__stage{ position: sticky; top: 64px; padding: 40px 0 60px; }
+.apexstory__steps{ flex: 1 1 38%; max-width: 420px; padding-top: 40px; }
+
+.step{ min-height: 78vh; display:flex; flex-direction: column; justify-content: center; padding: 40px 0; opacity: 0.35; transition: opacity 0.4s ease; }
+.step.is-active{ opacity: 1; }
+.step__num{ font-family: var(--font-mono); font-size: 12px; color: var(--amber); margin: 0 0 8px; }
+.step__text{ font-size: 19px; line-height: 1.5; color: var(--ink-dim); margin:0; }
+.step.is-active .step__text{ color: var(--ink); }
+
+@media (max-width: 880px){
+  .apexstory, .vegasstory{ flex-direction: column; }
+  .apexstory__stage, .vegasstory__stage{ position: static; padding-top: 20px; }
+  .apexstory__steps, .vegasstory__steps{ max-width: none; }
+  .step{ min-height: 0; padding: 20px 0; opacity:1; }
+}
+
+/* ============================================================
+   BRIDGE
+============================================================= */
+.bridge{ text-align:center; padding: 12vh clamp(20px,6vw,80px); color: var(--muted); font-family: var(--font-display); text-transform: uppercase; font-size: clamp(18px,2.4vw,24px); letter-spacing: 0.02em; }
+.bridge__arrow{ display:block; margin: 22px auto 0; color: var(--amber); }
+.bridge--text{
+  font-family: var(--font-body); text-transform: none; letter-spacing: normal;
+  max-width: var(--container); margin: 0 auto; text-align: left;
+}
+.bridge--text .bridge__kicker{
+  font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--ink); font-size: clamp(20px,2.6vw,28px); margin: 0 0 16px;
+}
+.bridge--text p:not(.bridge__kicker){ font-size: 18px; color: var(--ink-dim); }
+.bridge--text .bridge__arrow{ margin-left: 0; }
+
+/* ============================================================
+   VEGAS DOMINANCE SCROLLYTELLING (mini charts)
+============================================================= */
+.vegasstory{
+  position: relative; display:flex; gap: 40px;
+  padding: 0 clamp(20px, 6vw, 80px); max-width: 1400px; margin: 0 auto;
+}
+.vegasstory__sticky{ flex: 1 1 62%; min-width: 0; }
+.vegasstory__stage{ position: sticky; top: 64px; padding: 40px 0 60px; }
+.vegasstory__steps{ flex: 1 1 38%; max-width: 420px; padding-top: 40px; }
+
+.miniChart{
+  border: 1px solid var(--line); border-radius: 4px; background: var(--surface);
+  padding: 16px clamp(14px,2.4vw,24px) 12px; margin-bottom: 16px;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.miniChart.is-visible{ opacity: 1; transform: translateY(0); }
+.miniChart__title{ font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 10px; }
+.miniChart__row{ position: relative; z-index: 1; display:flex; align-items:flex-end; gap: clamp(4px,1vw,10px); height: 92px; }
+.miniChart__col{ flex:1 1 0; display:flex; flex-direction: column; align-items:center; justify-content: flex-end; height:100%; gap:5px; }
+.miniChart__bar{ width:100%; max-width: 30px; border-radius: 2px 2px 0 0; height:0%; cursor: pointer; transition: height 0.7s cubic-bezier(.22,.9,.32,1), filter 0.15s ease, box-shadow 0.15s ease; }
+.miniChart__bar--total{ background: var(--paleblue); }
+.miniChart__bar--vegas{ background: var(--amber); }
+.miniChart__bar--cities{ background: var(--paleblue); }
+.miniChart__val{ font-family: var(--font-mono); font-size: 10px; color: var(--ink-dim); }
+.miniChart__label{ font-family: var(--font-mono); font-size: 9.5px; color: var(--muted); }
+
+/* Single big chart area that swaps content per scrollytelling step,
+   sized to the combined footprint the three stacked mini charts
+   used to occupy together. */
+.miniChart--big{
+  margin-bottom: 0;
+  transition: opacity 0.25s ease, transform 0.5s ease;
+}
+.miniChart--big .axisChart__inner{ height: clamp(150px, 40vh, 420px); }
+.miniChart--big .miniChart__row{ height: 100%; }
+.miniChart--big .miniChart__bar{ max-width: 56px; }
+.miniChart--big .miniChart__val{ font-size: 12px; }
+.miniChart--big .miniChart__label{ font-size: 11.5px; }
+.miniChart--big .legend{ margin: 0 0 16px; }
+
+@media (max-width: 640px){
+  .miniChart--big .axisChart__inner{ height: 260px; }
+}
+
+/* ============================================================
+   STREAMING DEAL TIMELINE — horizontal scrollytelling
+============================================================= */
+.dealstory{ position: relative; }
+.dealstory__sticky{
+  position: sticky; top: 0; height: 100vh;
+  display:flex; flex-direction: column; justify-content:center;
+  overflow: hidden;
+}
+.dealstory__header{ max-width: var(--container); margin: 0 auto; width:100%; padding: 0 clamp(20px,6vw,80px); }
+
+.dealTrack__viewport{ margin-top: 34px; overflow: hidden; }
+.dealTrack{
+  display:flex; gap: 22px;
+  padding: 6px clamp(20px,6vw,80px) 26px;
+  will-change: transform;
+}
+.dealCard{
+  flex: 0 0 clamp(240px, 30vw, 340px);
+  background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--line-strong);
+  border-radius: 4px; padding: 24px 26px;
+  opacity: 0.4; transform: scale(0.96);
+  transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+.dealCard.is-active{ opacity: 1; transform: scale(1); border-left-color: var(--amber); }
+.dealCard__year{ display:block; font-family: var(--font-mono); font-size: 13px; font-weight:600; color: var(--amber); letter-spacing: 0.04em; margin-bottom: 12px; }
+.dealCard__text{ margin:0; font-size: 16px; line-height: 1.55; color: var(--ink-dim); }
+.dealCard.is-active .dealCard__text{ color: var(--ink); }
+
+.dealTrack__progress{
+  height: 3px; background: var(--line); border-radius: 2px; overflow: hidden;
+  margin: 22px clamp(20px,6vw,80px) 0;
+}
+.dealTrack__progressFill{ display:block; height:100%; width:0%; background: var(--amber); transition: width 0.1s linear; }
+
+@media (max-width: 880px){
+  .dealstory__sticky{ position: static; height:auto !important; padding: 8vh 0; }
+  .dealTrack__viewport{ overflow-x: auto; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+  .dealTrack{ transform:none !important; padding: 6px clamp(20px,6vw,40px) 26px; }
+  .dealCard{ flex: 0 0 82vw; opacity:1; transform:none; scroll-snap-align: start; }
+  .dealTrack__progress{ display:none; }
+}
+
+/* ============================================================
+   NATIONALITIES DIVERGING BAR CHART
+============================================================= */
+.natstory{ padding: 6vh clamp(20px, 6vw, 80px) 14vh; max-width: var(--wide); margin: 0 auto; }
+.natstory__header{ max-width: var(--container); margin-bottom: 30px; }
+.natChart{
+  border: 1px solid var(--line); border-radius: 4px; background: var(--surface);
+  padding: 20px clamp(16px,3vw,28px);
+}
+.natRow{ display:grid; grid-template-columns: 130px 1fr 90px 1fr 70px; align-items:center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.natRow:last-child{ border-bottom: none; }
+.natRow__name{ font-size: 13.5px; color: var(--ink-dim); }
+.natRow__champTrack, .natRow__eventTrack{ height: 12px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
+.natRow__champBar{ height:100%; width:0%; background: var(--green); transition: width 0.8s cubic-bezier(.22,.9,.32,1); }
+.natRow__eventBar{ height:100%; width:0%; background: var(--crimson); transition: width 0.8s cubic-bezier(.22,.9,.32,1); }
+.natRow__eventBar.is-zero{ background: var(--muted); }
+.natRow__champVal{ font-family: var(--font-mono); font-size: 12px; text-align: right; color: var(--ink-dim); }
+.natRow__eventVal{ font-family: var(--font-mono); font-size: 12px; color: var(--ink-dim); }
+.natChart__head{ display:grid; grid-template-columns: 130px 1fr 90px 1fr 70px; gap: 10px; padding-bottom: 10px; margin-bottom: 4px; border-bottom: 1px solid var(--line-strong); }
+.natChart__head span{ font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.natstory__note{ font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 14px; max-width: var(--container); }
+
+@media (max-width: 640px){
+  .natRow, .natChart__head{ grid-template-columns: 90px 1fr 60px 1fr 46px; font-size: 12px; }
+}
+
+/* ============================================================
+   FAN INTERVIEWS / VOX POP
+============================================================= */
+.voxpop{ padding: 6vh clamp(20px,6vw,80px) 14vh; max-width: var(--wide); margin: 0 auto; }
+.voxpop__header{ max-width: var(--container); margin-bottom: 32px; }
+.voxpop__grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.quoteCard{
+  margin: 0; background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--amber);
+  border-radius: 4px; padding: 22px 24px;
+}
+.quoteCard p{ font-size: 16px; color: var(--ink-dim); line-height: 1.55; margin: 0 0 14px; font-style: italic; }
+.quoteCard footer{ font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.quoteCard footer strong{ color: var(--ink); font-style: normal; }
+
+@media (max-width: 760px){
+  .voxpop__grid{ grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   OUTRO
+============================================================= */
+.outro{ padding: 16vh clamp(20px,6vw,80px) 10vh; display:flex; justify-content:center; border-top: 1px solid var(--line); }
+.outro__col{ max-width: var(--container); }
+.outro__title{ font-size: clamp(28px,4vw,40px); margin-bottom: 20px; }
+.outro p{ color: var(--ink-dim); font-size: 18px; }
+.outro__sources{ font-family: var(--font-mono); font-size: 13px !important; color: var(--muted) !important; border-top: 1px solid var(--line); padding-top: 20px; margin-top: 30px !important; }
+
+.footer{ text-align:center; padding: 30px; color: var(--muted); font-family: var(--font-mono); font-size: 12px; border-top: 1px solid var(--line); }
+
+
+.miniChart__stack{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  overflow:hidden;
+}
+
+.miniChart__bar--apex{
+  background:var(--amber);
+}
+
+.miniChart__bar--nonapex{
+  background: var(--paleblue);
+}

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Fights That Never Happened — A Dossier on the UFC's Missing Stars</title>
+<meta name="description" content="An investigation into why MMA's biggest stars have failed to fight under the UFC banner.">
+
+<!-- ============================================================
+  PROTOTYPE NOTICE
+  This is a structural/visual prototype. All copy, figures and
+  images marked [[PLACEHOLDER]] are illustrative only and MUST
+  be replaced with verified reporting before publication.
+============================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     BUILD BANNER — remove before publish
+============================================================= -->
+
+
+<!-- ============================================================
+     MASTHEAD
+============================================================= -->
+<header class="masthead">
+  <div class="masthead__mark">ARTICLE&nbsp;№01</div>
+  <div class="masthead__title">Is the UFC suffering from success?&nbsp;</div>
+  <div class="masthead__meta">Investigations</div>
+</header>
+
+<!-- ============================================================
+     HERO
+============================================================= -->
+<section class="hero">
+  <div class="hero__ring" aria-hidden="true"></div>
+  <div class="hero__content">
+    <p class="eyebrow">An investigation</p>
+    <h1 class="hero__headline">The absence<br>of the UFC's<br>biggest stars</h1>
+    <p class="hero__deck">
+      Mixed Martial Arts' biggest stars keep asking for one more walk to the cage.
+      Why are the UFC stopping them?
+    </p>
+    <div class="hero__byline">
+      <span>By <strong>Will McNamee</strong></span>
+      <span class="dot">•</span>
+      <span>August 2026</span>
+      <span class="dot">•</span>
+    </div>
+  </div>
+  <button class="scroll-cue" id="scrollCue" aria-label="Scroll to begin the story">
+    <span>Scroll to begin</span>
+    <svg width="14" height="22" viewBox="0 0 14 22" fill="none"><path d="M7 1v20M1 15l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</section>
+
+<!-- ============================================================
+     INTRO / LEDE
+============================================================= -->
+<section class="lede">
+  <div class="lede__col">
+    <p class="lede__drop">
+      <span class="drop-cap">T</span>he biggest stars in the
+      history of Mixed Martial Arts almost all belong to a generation 
+      that is aging out. If you think about the biggest stars the sport has
+      ever seen, the chances are their peak years were in the 2010's.
+      
+      <br><br>Despite their lack of active superstars, the UFC has seen 
+      unprecedented success since the COVID-19 pandemic, signing 
+      record-breaking streaming deals and expanding into new territories. 
+
+     <br><br>What has been unusual in recent years is the fact that some of the UFC's
+     biggest ever stars have announced their interest in returning to MMA's
+     premier organisation, yet almost all have been met with red tape.
+    </p>
+    <p>
+      Several of these fighters have made their frustration public, arguing 
+      that the UFC's business dealings are to blame for their absence from
+      The Octagon.
+    </p>
+    <p>
+      This investigation examines the biggest stars in modern UFC history and asks
+      a simple question: of those who wanted to fight recently, why couldn't they?
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     METHODOLOGY CALLOUT
+============================================================= -->
+<section class="method">
+  <div class="method__card">
+    <p class="method__kicker">How I measured stardom</p>
+    <p>
+      To rank the UFC's biggest stars, I used each fighter's Instagram
+      follower count as of <strong>May 2026</strong> as a proxy for name recognition.
+      I took the top 15, treating the list as an unofficial divisional ranking for 
+      popularity.
+    </p>
+    
+    <p class="method__note">
+  The source for Instagram follower count can be found
+  <a href="https://www.sacnilk.com/news/List_Of_Most_Followed_UFC_on_Instagram"
+     target="_blank"
+     rel="noopener">here</a>.
+</p>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     SCROLLYTELLING SECTION 1 — THE LIST (sticky table)
+============================================================= -->
+<section class="tablestory" id="tablestory">
+
+  <div class="tablestory__sticky">
+    <div class="tablestory__stage">
+
+      <div class="stage__header">
+        <p class="stage__label" id="stageLabel">Step 1 of 3</p>
+        <h2 class="stage__title" id="stageTitle">MMA's 15 biggest stars</h2>
+        <p class="stage__sub" id="stageSub">Ranked by Instagram followers, May 2026</p>
+      </div>
+
+      <div class="readout" id="readout" aria-live="polite"></div>
+
+      <div class="tableWrap">
+        <table class="fightTable" id="fightTable">
+          <thead>
+            <tr>
+              <th class="col-rank">Rank</th>
+              <th class="col-name">Fighter</th>
+              <th class="col-followers">IG followers</th>
+              <th class="col-status">Status</th>
+            </tr>
+          </thead>
+          <tbody id="fightTableBody">
+            <!-- rows injected by script.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="legend" id="legend">
+        <span class="legend__item"><i class="dot dot--amber"></i> Public dispute with UFC</span>
+        <span class="legend__item"><i class="dot dot--muted"></i> Retired</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- scroll-driven step text, runs alongside the sticky stage above -->
+  <div class="tablestory__steps">
+    <div class="step" data-step="0">
+      <p class="step__num">01</p>
+      <p class="step__text">Here are the 15 biggest names in the sport, according to the number of Instagram followers.
+</p>
+    </div>
+    <div class="step" data-step="1">
+      <p class="step__num">02</p>
+      <p class="step__text">Four of them - Khabib Nurmagomedov, Dustin Poirier, Georges St-Pierre and Anderson Silva - 
+        are 100% retired from competition. <br><br>
+        
+        Strip them out and 11 fighters remain who could, in theory, still be actively competing in MMA.</p>
+    </div>
+    <div class="step" data-step="2">
+      <p class="step__num">03</p>
+      <p class="step__text">Of those 11, six have had public disputes with the UFC over contractual arrangements or matchmaking.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     BRIDGE
+============================================================= -->
+<section class="bridge">
+  <p>Six fighters. Six different reasons the biggest fights in the sport never got made. Scroll on to walk through each one.</p>
+  <svg class="bridge__arrow" width="34" height="14" viewBox="0 0 34 14" fill="none" aria-hidden="true"><path d="M1 1c6 6 10 11 16 11s10-5 16-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+</section>
+
+
+       <!-- McGregor -->
+       <section class="fighterChapter lede" id="fighter-conor-mcgregor" data-fighter="Conor McGregor">
+          <div class="chapterRail__mobileBar" aria-hidden="true">
+            <div class="chapterRail__mobileFill"></div>
+          </div>
+          <div class="chapterRail" aria-hidden="true">
+            <div class="chapterRail__stage">
+              <div class="chapterRail__track"><div class="chapterRail__fill"></div></div>
+              <ol class="chapterRail__nodes">
+                <li class="chapterRail__node" data-node="0">
+                  <span class="chapterRail__date">Jan 2020</span>
+                  <span class="chapterRail__label">Beats Cowboy Cerrone</span>
+                </li>
+                <li class="chapterRail__node" data-node="1">
+                  <span class="chapterRail__date">24 Jan 2021</span>
+                  <span class="chapterRail__label">Audiences allowed back, McGregor returns</span>
+                </li>
+                <li class="chapterRail__node" data-node="2">
+                  <span class="chapterRail__date">2026</span>
+                  <span class="chapterRail__label">Frustrated over White House card snub</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div class="lede__col">
+            <H2 class="FighterName">Conor McGregor</H2>
+            <img class="fighterImage" src="Images/Conor McGregor.png" alt="Conor McGregor">
+            <p class="lede__drop">
+          As the biggest star in the history of MMA, McGregor is very familiar with the uglier 
+          side of fight negotiation and has had his fair share of run-ins with the UFC.<br><br>
+          After <span class="timelineAnchor" data-node="0">returning from his MMA hiatus in January 2020</span> with a victory over Donald
+          ‘Cowboy’ Cerrone, McGregor was keen to keep his momentum going by remaining active 
+          throughout the year. Even with the COVID-19 pandemic halting global sporting events, 
+          the UFC only missed five scheduled events and returned to televised events less than 
+          two months later. <br><br>Despite this relatively short break and McGregor’s desire to stay 
+          active, we wouldn’t see McGregor until <span class="timelineAnchor" data-node="1">the 24th of January, 2021</span> when audiences were
+          allowed back to events, a factor 16-time MMA Journalist of the Year Ariel Helwani
+          cited for the UFC's reticence to let him fight:<br><br> "McGregor wants to fight right now, 
+          but they [the UFC] aren't keen on getting him a fight because they can't make money 
+          off that gate right now."<br><br>
+          Flash forward to this past year and McGregor <span class="timelineAnchor" data-node="2">made public his frustration at not being
+          allowed to fight on the UFC White House card</span>:<br><br> "They usually put me on UFC 201, or 301, 
+          like a double sale. The White House was going to hit no matter what."
+          "Who gives a f*** who we put on it? So they'd rather put me on another card."<br><br>
+          "They wheel McGregor out for the second one so it's a double economic take."<br><br>
+          "I can't decide what these men do. I don't doubt them but it's like the fighters right
+          now are cattle."
+
+          <br><br>McGregor did eventually get a fight booked with Max Holloway on UFC 329, the numbered event after the 
+          White House card. Unfortunately, McGregor seriously injured his knee in the opening moments of the fight, 
+          leading to the referee calling the fight off after just 69 seconds. 
+          
+          <br><br>He’s since come out and stated he’s had successful surgery and is already looking forward to his comeback bout, but it remains to be seen how the negotiations for this event will play out.
+
+        </p>
+      </div>
+    </section>
+
+    
+      <!-- Rousey -->
+        <section class="fighterChapter lede" id="fighter-ronda-rousey" data-fighter="Ronda Rousey">
+          <div class="chapterRail__mobileBar" aria-hidden="true">
+            <div class="chapterRail__mobileFill"></div>
+          </div>
+          <div class="chapterRail" aria-hidden="true">
+            <div class="chapterRail__stage">
+              <div class="chapterRail__track"><div class="chapterRail__fill"></div></div>
+              <ol class="chapterRail__nodes">
+                <li class="chapterRail__node" data-node="0">
+                  <span class="chapterRail__date">2026</span>
+                  <span class="chapterRail__label">Return fight vs Gina Carano announced</span>
+                </li>
+                <li class="chapterRail__node" data-node="1">
+                  <span class="chapterRail__date">2026</span>
+                  <span class="chapterRail__label">Blames Paramount+ deal for pay dispute</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div class="lede__col">
+            <H2 class="FighterName">Ronda Rousey</H2>
+            <img class="fighterImage" src="Images/Ronda Rousey.png" alt="Ronda Rousey">
+            <p class="lede__drop">
+          Rousey was a trailblazer for women's MMA with her meteoric rise to stardom seeing 
+          her become the first female Mixed Martial Artist to cross over into mainstream media. Despite
+          her time at the top of the UFC ending dramatically with back-to-back losses to
+          Holly Holm and Amanda Nunes, Ronda's starpower never faded.<br><br> Such was her superstardom
+          that almost a decade after her retirement, <span class="timelineAnchor" data-node="0">the announcement of Rousey's return to MMA
+          against Gina Carano in 2026</span> sent shockwaves across sports media.<br><br> However, there was 
+          another narrative going into the monumental matchup that occupied much of the pre-fight 
+          buildup. The fight was taking place under the MVP promotion and being streamed live on
+          Netflix, despite both Rousey and Carano being former UFC fighters.<br><br> In the buildup to the 
+          fight, Rousey <span class="timelineAnchor" data-node="1">directly attributed this fact to the UFC's new streaming deal with
+          Paramount+ preventing them from being able justify the event economically</span>. According to 
+          Rousey, the bout had been agreed in principle prior to the new streaming deal being 
+          announced and she was set to earn her highest career payday to date:<br><br> "Originally, I 
+          wanted to do it for New Year’s and I went to [Dana] and I’m like you always say I’m the 
+          best fighter you ever worked with, reward me for it,” Rousey said. 
+          
+          <br><br>“Don’t punish me for 
+          being easy to work with. Give me the best deal you ever gave anybody. He’s like ‘all 
+          right, I’m going to go back and get you the best deal I’ve ever had.’ He came back and 
+          literally brought me a deal where I would make more per pay-per-view buy than anybody in 
+          history. Like if I hit my historical numbers, which I know we would have been able to 
+          exceed, I would have made as much as I did in my entire career."<br><br> However, Carano required 
+          more time to prepare for the bout which pushed the proposed date back to after the UFC 
+          signed their record-breaking media rights deal with Paramount+. Rousey claimed that the 
+          structure of this new media deal and the removal of the Pay-Per-View model meant that the 
+          original offer Dana White had offered her no longer stood:<br><br>
+          “They’re now a publicly traded company and how do I put it — they didn’t want to set a 
+          precedent of giving me the guaranteed money that I deserve because once I raise that tide, 
+          it lifts all the boats,” Rousey said. 
+          
+          <br><br>“They just made a $7.7 billion deal at Paramount so 
+          it’s in their best interest actually not to put on the best fights possible but to spend as 
+          little money as possible so they can keep it."
+
+        </p>
+      </div>
+    </section>
+
+
+      <!-- Rousey -->
+        <section class="fighterChapter lede" id="fighter-jon-jones" data-fighter="Jon Jones">
+          <div class="chapterRail__mobileBar" aria-hidden="true">
+            <div class="chapterRail__mobileFill"></div>
+          </div>
+          <div class="chapterRail" aria-hidden="true">
+            <div class="chapterRail__stage">
+              <div class="chapterRail__track"><div class="chapterRail__fill"></div></div>
+              <ol class="chapterRail__nodes">
+                <li class="chapterRail__node" data-node="0">
+                  <span class="chapterRail__date">Jun 2025</span>
+                  <span class="chapterRail__label">Stripped of heavyweight title</span>
+                </li>
+                <li class="chapterRail__node" data-node="1">
+                  <span class="chapterRail__date">2025</span>
+                  <span class="chapterRail__label">Teases interest in White House card</span>
+                </li>
+                <li class="chapterRail__node" data-node="2">
+                  <span class="chapterRail__date">2026</span>
+                  <span class="chapterRail__label">Barred from card, asks for release</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div class="lede__col">
+            <H2 class="FighterName">Jon Jones</H2>
+            <img class="fighterImage" src="Images/Jon Jones.png" alt="Jon Jones">
+            <p class="lede__drop">
+            Jon Jones is arguably the greatest mixed martial artist of all time, but his actions outside of the
+            Octagon have garnered just as much attention. Over the years, the UFC has stuck by Jones through failed
+            drugs tests and arrests but his recent actions seem to have been the last straw.
+            
+            <br><br>After refusing to defend his undisputed heavyweight title against interim champion Tom Aspinall and instead
+            opting for retirement, <span class="timelineAnchor" data-node="0">Jones was stripped of his heavyweight belt in June 2025</span>. However, <span class="timelineAnchor" data-node="1">less than three
+            weeks later, Jones then teased his desire to compete at the UFC’s White House event</span> which was scheduled
+            for 2026. 
+            
+            <br><br>Jones emphasised that at this later stage in his career, he was only interested in fights that
+            would add to his legacy. Having held up the UFC’s heavyweight division, Dana White made it clear that
+            Jones would not be allowed to compete at the White House event, despite Jones’ claims that he had been
+            in negotiations to compete at the event. 
+            
+            <br><br>Jones was extremely disappointed at the outcome and at Dana’s public statements that he was never in contention to compete at the event. Jones subsequently asked to
+            be released from his UFC contract so that he may explore options outside of the UFC.<br><br>
+
+            "<span class="timelineAnchor" data-node="2">Dana, you were heated about why I'm not on the White House card, but let's clear something up,</span>" Jones
+            wrote on X. 
+            
+            <br><br>"My team and I were actually negotiating with the UFC for that fight. Real negotiations. I
+            even came down from my original number, and what was I offered in return? I was lowballed.<br><br>
+
+            "If the UFC truly feels like I'm done, then I respectfully ask to be released from my contract today."<br><br>
+
+            As it currently stands, Jones is still not scheduled to compete in the UFC despite still being under
+            contract with the organisation.<br><br>
+
+
+
+        </p>
+      </div>
+    </section>
+
+      <!-- Rousey -->
+        <section class="fighterChapter lede" id="fighter-nate-diaz" data-fighter="Nate Diaz">
+          <div class="chapterRail__mobileBar" aria-hidden="true">
+            <div class="chapterRail__mobileFill"></div>
+          </div>
+          <div class="chapterRail" aria-hidden="true">
+            <div class="chapterRail__stage">
+              <div class="chapterRail__track"><div class="chapterRail__fill"></div></div>
+              <ol class="chapterRail__nodes">
+                <li class="chapterRail__node" data-node="0">
+                  <span class="chapterRail__date">2016</span>
+                  <span class="chapterRail__label">Reaches peak fame after McGregor fights</span>
+                </li>
+                <li class="chapterRail__node" data-node="1">
+                  <span class="chapterRail__date">2022</span>
+                  <span class="chapterRail__label">Final fight of UFC contract</span>
+                </li>
+                <li class="chapterRail__node" data-node="2">
+                  <span class="chapterRail__date">2022</span>
+                  <span class="chapterRail__label">Accuses UFC of trapping him</span>
+                </li>
+                <li class="chapterRail__node" data-node="3">
+                  <span class="chapterRail__date">2026</span>
+                  <span class="chapterRail__label">Announces MMA return outside UFC</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div class="lede__col">
+            <H2 class="FighterName">Nate Diaz</H2>
+            <img class="fighterImage" src="Images/Nate Diaz.png" alt="Nate Diaz">
+            <p class="lede__drop">
+            Another one of the 2010’s biggest stars, Nate Diaz reached the upper echelons of MMA notoriety
+             <span class="timelineAnchor" data-node="0">in 2016 after his pair of fights with Conor McGregor</span>. His nonchalant
+              attitude, candid demeanor and antics outside of the cage endeared him to the fanbase who supported
+              him regardless of his results in the cage.<br><br>
+
+            Therefore, even after <span class="timelineAnchor" data-node="1">the final fight of his UFC contract in 2022</span> and seemingly past his athletic
+            prime, Diaz’s stock within combat sports was still incredibly high. After testing free agency and
+            competing in two boxing fights against Jorge Masvidal and Jake Paul respectively, <span class="timelineAnchor" data-node="3">it was announced
+            that Diaz would be returning to MMA in 2026, but not with the UFC.</span><br><br>
+
+            Despite competing for the UFC 27 times across 15 years , Diaz’s return would be on the same MVP card as
+            Ronda Rousey vs Gina Carano. What’s more, his opponent would be another former UFC fighter Mike
+            Perry. 
+            
+            <br><br>While there was seemingly no bad blood between Diaz and the UFC over the decision, Dana White
+            did confirm that they were in negotiations in the lead up to the MVP announcement:
+
+            <br><br>“He came in and met with me a couple of weeks ago. We had a good time, and I think Nate just got an
+            offer he couldn't refuse. I haven't talked to him since then, but I'm happy for him.”<br><br>
+
+            Despite the amicable relationship between Diaz and the UFC, over the years Diaz has taken to social
+            media on several occasions to plead for his release from the organisation, citing pay issues and
+            unfair contracts. <span class="timelineAnchor" data-node="2">The most notable of these came in 2022 when Diaz claimed the UFC was trapping him
+            by not offering him fights.</span><br><br>
+
+            “They're slow-rolling me; they're trying to keep me under contract," Diaz said. 
+            
+            <br><br>"And I've been doing
+            all I can. I've never asked for so many fights in my life. ... Even right now, they're not letting me
+            get in there and finish my contract."<br><br>
+
+            "UFC, can I please have my last fight and be on my way?" he continued. 
+            
+            <br><br>"Give me anybody. I want to
+            fight next month. July, August at the latest, and I want to be on my way. I'll fight tonight."
+
+
+        </p>
+      </div>
+    </section>
+
+
+
+      <!-- Ngannou -->
+        <section class="fighterChapter lede" id="fighter-francis-ngannou" data-fighter="Francis Ngannou">
+          <div class="chapterRail__mobileBar" aria-hidden="true">
+            <div class="chapterRail__mobileFill"></div>
+          </div>
+          <div class="chapterRail" aria-hidden="true">
+            <div class="chapterRail__stage">
+              <div class="chapterRail__track"><div class="chapterRail__fill"></div></div>
+              <ol class="chapterRail__nodes">
+                <li class="chapterRail__node" data-node="0">
+                  <span class="chapterRail__date">2023</span>
+                  <span class="chapterRail__label">Loses split decision to Tyson Fury</span>
+                </li>
+                <li class="chapterRail__node" data-node="1">
+                  <span class="chapterRail__date">2024</span>
+                  <span class="chapterRail__label">Loses boxing bout to Anthony Joshua</span>
+                </li>
+                <li class="chapterRail__node" data-node="2">
+                  <span class="chapterRail__date">Mar 2026</span>
+                  <span class="chapterRail__label">PFL deal expires, becomes free agent</span>
+                </li>
+                <li class="chapterRail__node" data-node="3">
+                  <span class="chapterRail__date">2026</span>
+                  <span class="chapterRail__label">Joins MVP card over UFC return</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div class="lede__col">
+            <H2 class="FighterName">Francis Ngannou</H2>
+            <img class="fighterImage" src="Images/Franics Ngannou.png" alt="Francis Ngannou">
+            <p class="lede__drop">
+            Francis Ngannou is the only person in this list who has completely cut ties with the UFC. Ngannou 
+            publicly parted ways with the organization following failed contract negotiations despite being the 
+            reigning heavyweight champion at the time.<br><br>
+
+            After leaving the UFC, Ngannou signed with PFL citing that they were willing to offer terms alongside 
+            financial incentives that the UFC weren’t. This deal also allowed him to explore other combat sports 
+            alongside MMA and <span class="timelineAnchor" data-node="0">in 2023 he competed against Tyson Fury in a boxing fight</span>. 
+            
+            <br><br>Few gave Ngannou a serious
+            chance in the bout, but the contest ended up being a split decision in Fury’s favour. Many media members 
+            suggested Ngannou had been robbed by the judges and the entire situation elevated his stardom to a new 
+            level. Despite <span class="timelineAnchor" data-node="1">losing his subsequent boxing fight against Anthony Joshua in 2024</span>, it was evident that
+            Ngannou’s position within combat sports had elevated significantly.<br><br>
+
+            <span class="timelineAnchor" data-node="2">In March 2026, it was announced that Ngannou’s deal with the PFL had expired making him a free agent.</span>
+             In his only bout with the PFL Ngannou beat Renan Ferreira who had won their most recent heavyweight tournament, prompting many to claim that he was still one of 
+             the best heavyweights on the planet.<br><br>
+
+            While this technically opened up the possibility of a return to the UFC, both parties had dismissed
+             the idea due to their poor relationship. Instead, <span class="timelineAnchor" data-node="3">Ngannou would also compete on the MVP card alongside
+              Ronda Rousey and Nate Diaz</span>. 
+              
+              <br><br>What’s more, during Ngannou’s walkout for his fight against Philip Lins, 
+              the UFC announced the return of Conor McGregor against Max Holloway. Dana White denies this was 
+              intentional.<br><br>
+
+            Despite the UFC’s heavyweight division going through some turbulent times with undisputed champion Tom 
+            Aspinall absent due to injury and seemingly facing his own issues with the UFC, it looks like we are no
+             closer to seeing Francis Ngannou return.<br><br>
+
+
+        </p>
+      </div>
+    </section>
+
+
+      <!-- Rousey -->
+        <section class="fighterChapter lede" id="fighter-arman-tsarukyan" data-fighter="Arman Tsarukyan">
+          <div class="chapterRail__mobileBar" aria-hidden="true">
+            <div class="chapterRail__mobileFill"></div>
+          </div>
+          <div class="chapterRail" aria-hidden="true">
+            <div class="chapterRail__stage">
+              <div class="chapterRail__track"><div class="chapterRail__fill"></div></div>
+              <ol class="chapterRail__nodes">
+                <li class="chapterRail__node" data-node="0">
+                  <span class="chapterRail__date">End 2024</span>
+                  <span class="chapterRail__label">Beats former champ Charles Oliveira</span>
+                </li>
+                <li class="chapterRail__node" data-node="1">
+                  <span class="chapterRail__date">Jan 2025</span>
+                  <span class="chapterRail__label">Pulls out of Makhachev title fight</span>
+                </li>
+                <li class="chapterRail__node" data-node="2">
+                  <span class="chapterRail__date">Nov 2025</span>
+                  <span class="chapterRail__label">Dominant win over Dan Hooker</span>
+                </li>
+                <li class="chapterRail__node" data-node="3">
+                  <span class="chapterRail__date">Jan 2026</span>
+                  <span class="chapterRail__label">Passed over for interim title shot</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+          <div class="lede__col">
+            <H2 class="FighterName">Arman Tsarukyan</H2>
+            <img class="fighterImage" src="Images/Arman Tsarukyan.png" alt="Arman Tsarukyan">
+            <p class="lede__drop">
+            Arman Tsarukyan is the only fighter on this list who is still in the middle of his active MMA career. 
+            Tsarukyan is only 29 and has been in and around the title picture of the lightweight division since the
+            <span class="timelineAnchor" data-node="0">end of 2024 when he beat former champion Charles Oliveira</span>. <span class="timelineAnchor" data-node="1">
+              
+            <br><br>Tsarukyan was scheduled to compete for the
+            lightweight belt in January 2025 against Islam Makhachev but pulled out of the contest the day before due
+            to injury</span>; a fact that the UFC has seemingly held against him ever since. 
+            
+            <br><br>Despite being next in line for 
+            the belt at the start of 2025, <span class="timelineAnchor" data-node="2">Tsarukyan’s next contest would come against number six-ranked contender Dan
+            Hooker in November</span>. Even after winning the fight dominantly and being the consensus number-one contender, 
+            <span class="timelineAnchor" data-node="3">Tsarukyan was still passed up for the interim lightweight title bout in January 2026.</span> 
+
+            <br><br>Tsarukyan has been absent from the UFC for the entirety of 2026 so far, yet he’s continuously claimed that he is 
+            waiting for a fight offer. He’s remained very busy by competing in 10 grappling matches, potentially a nod to the 
+            UFC that he’s ready and willing to compete.
+
+            <br><br>On the 6th of August it was announced that Tsarukyan would face Mauricio Ruffy at UFC 331 in September. 
+            Ruffy is currently ranked seventh at lightweight meaning once again Tsarukyan is having to wait his turn for 
+            a title shot.
+
+            <br><br>Current lightweight champion Justin Gaethje is unlikely to compete again this year and with several 
+            big players in the lightweight division still unmatched, who knows how long Tsarukyan will have to wait for 
+            his crack at the belt.
+
+
+
+        </p>
+      </div>
+    </section>
+<!-- ============================================================
+     SCROLLYTELLING SECTION 2 — HORIZONTAL FIGHTER STORIES
+============================================================= -->
+<!-- <section class="horiz" id="horiz">
+  <div class="horiz__sticky">
+
+    <div class="horiz__progress" aria-hidden="true">
+      <div class="horiz__progress-bar" id="horizProgressBar"></div>
+    </div>
+
+    <div class="horiz__dots" id="horizDots"></div>
+
+    <div class="horiz__track" id="horizTrack">
+
+
+      <!-- PANEL 2 : Rousey & Diaz (grouped) -->
+      <!-- <article class="panel panel--dual" data-panel="1">
+        <div class="panel__dual-col">
+          <div class="panel__stamp" data-fighter="Ronda Rousey"></div>
+          <p class="panel__eyebrow">Story 02 of 05</p>
+          <h3 class="panel__name">Ronda Rousey</h3>
+          <p class="panel__record">[[13-2-0]] · Last fought for UFC 30th December 2016</p>
+          <p class="panel__status" data-fighter="Ronda Rousey"></p>
+          <p class="panel__body"> -->
+            <!-- Rousey was a trailblazer for women's MMA with her meteoric rise to stardom seeing 
+            her become the first female Mixed Martial Artist to into mainstream media. Despite
+            her time at the top of the UFC ending dramatically with back-to-back losses to
+            Holly Holm and Amanda Nunes, Ronda's starpower never faded. Such was her superstardom
+            that almost a decade after her retirement, the announcement of Rousey's return to MMA 
+            to face Gina Carano in 2026 sent shockwaves across sports media. However, there was 
+            another narrative going into the monumental matchup that occupied much of the pre-fight 
+            buildup. The fight was taking place under the MVP promotion and being streamed live on
+            Netflix, despite both Rousey and Carano being former UFC fighters. In the buildup to the 
+            fight, Rousey directly attributed this fact to the UFC's new streaming deal with
+            Paramount+ preventing them from being able justify the event economically. According to 
+            Rousey, the bout had been agreed in principle prior to the new streaming deal being 
+            announced and she was set to earn her highest career payday to date: "Originally, I 
+            wanted to do it for New Year’s and I went to [Dana] and I’m like you always say I’m the 
+            best fighter you ever worked with, reward me for it,” Rousey said. “Don’t punish me for 
+            being easy to work with. Give me the best deal you ever gave anybody. He’s like ‘all 
+            right, I’m going to go back and get you the best deal I’ve ever had.’ He came back and 
+            literally brought me a deal where I would make more per pay-per-view buy than anybody in 
+            history. Like if I hit my historical numbers, which I know we would have been able to 
+            exceed, I would have made as much as I did in my entire career." However, Carano required 
+            more time to prepare for the bout which pushed the proposed date back to after the UFC 
+            signed their record-breaking media rights deal with Paramount+.Rousey claimed that the 
+            structure of this new media deal and the removal of the Pay-Per-View model meant that the 
+            original offer Dana White had offered her no longer stood:<br><br>
+            “They’re now a publicly traded company and how do I put it — they didn’t want to set a 
+            precedent of giving me the guaranteed money that I deserve because once I raise that tide, 
+            it lifts all the boats,” Rousey said. “They just made a $7.7 billion deal at Paramount so 
+            it’s in their best interest actually not to put on the best fights possible but to spend as 
+            little money as possible so they can keep it.
+
+
+
+          </p>
+        </div>
+        <div class="panel__divider" aria-hidden="true"></div>
+        <div class="panel__dual-col">
+          <div class="panel__stamp" data-fighter="Nate Diaz"></div>
+          <p class="panel__eyebrow">Story 02b of 05</p>
+          <h3 class="panel__name">Nate Diaz</h3>
+          <p class="panel__record">[[W–L placeholder]] · Last fought [[date placeholder]]</p>
+          <p class="panel__status" data-fighter="Nate Diaz"></p>
+          <p class="panel__body">
+            [[PLACEHOLDER]] Diaz's UFC contract expired after his last
+            fight and, unlike previous cycles, was not renewed. He has
+            since fought outside the promotion, telling reporters
+            [[placeholder quote — paraphrase only, verify sourcing]]
+            that he was never offered fair terms to stay.
+          </p>
+        </div>
+      </article> -->
+
+      <!-- PANEL 3 : Jon Jones -->
+      <!-- <article class="panel" data-panel="2">
+        <div class="panel__stamp" data-fighter="Jon Jones"></div>
+        <p class="panel__eyebrow">Story 03 of 05</p>
+        <h3 class="panel__name">Jon Jones</h3>
+        <p class="panel__record">[[W–L placeholder]] · Last fought [[date placeholder]]</p>
+        <p class="panel__status" data-fighter="Jon Jones"></p>
+        <p class="panel__body">
+          [[PLACEHOLDER]] Long considered the promotion's heavyweight
+          champion in waiting-turned-holder, Jones has sat out for an
+          extended stretch amid disagreement over an opponent and purse
+          split. [[PLACEHOLDER — insert timeline of proposed opponents,
+          the promotion's response, and any retirement signalling.]]
+        </p>
+        <div class="panel__meta">
+          <span>[[Follower count]]</span>
+          <span>[[Title status]]</span>
+        </div>
+      </article> -->
+
+      <!-- PANEL 4 : Ngannou -->
+      <!-- <article class="panel" data-panel="3">
+        <div class="panel__stamp" data-fighter="Francis Ngannou"></div>
+        <p class="panel__eyebrow">Story 04 of 05</p>
+        <h3 class="panel__name">Francis Ngannou</h3>
+        <p class="panel__record">[[W–L placeholder]] · Last UFC fight [[date placeholder]]</p>
+        <p class="panel__status" data-fighter="Francis Ngannou"></p>
+        <p class="panel__body">
+          [[PLACEHOLDER]] Ngannou's UFC exit is the clearest case in this
+          list: his contract ended and he chose not to re-sign, citing
+          disputes over pay, sponsorship rights and medical cover. He has
+          since fought — and been paid — elsewhere. [[PLACEHOLDER — link
+          to his own public statements, paraphrased and cited.]]
+        </p>
+        <div class="panel__meta">
+          <span>[[Follower count]]</span>
+          <span>[[Current promotion]]</span>
+        </div>
+      </article> -->
+
+      <!-- PANEL 5 : Tsarukyan -->
+      <!-- <article class="panel" data-panel="4">
+        <div class="panel__stamp" data-fighter="Arman Tsarukyan"></div>
+        <p class="panel__eyebrow">Story 05 of 05</p>
+        <h3 class="panel__name">Arman Tsarukyan</h3>
+        <p class="panel__record">[[W–L placeholder]] · Last fought [[date placeholder]]</p>
+        <p class="panel__status" data-fighter="Arman Tsarukyan"></p>
+        <p class="panel__body">
+          [[PLACEHOLDER]] The most active fighter on this list by recent
+          record, Tsarukyan turned down a short-notice title fight
+          offered on terms he called unfair, and has said publicly that
+          the decision has cost him subsequent bookings. [[PLACEHOLDER —
+          verify quotes and confirm current contract status.]]
+        </p>
+        <div class="panel__meta">
+          <span>[[Follower count]]</span>
+          <span>[[Ranking]]</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section> -->
+
+<!-- ============================================================
+     OUTRO
+============================================================= -->
+<section class="outro">
+  <div class="outro__col">
+    <h2 class="outro__title">Six names, one pattern</h2>
+    <p>
+    At face value each fighter's absence has its own explanation, whether it’s
+     a contract dispute, a retirement , a turned-down offer or a breakdown from 
+     a previous fight. Taken together, they describe a promotion that is becoming 
+     less reliant on superstars and looking to make themselves the real draw. 
+     
+     <br><br>Ronda Rousey’s assessment of the situation seems to be the most apt: the 
+     Paramount+ deal has limited the UFC’s ability to platform their biggest stars.
+      With money now guaranteed upfront and no additional revenue from the 
+      Pay-Per-View model, the UFC has no financial incentive to platform its biggest 
+      stars outside of continuing to grow their brand.
+    </p>
+    <p class="outro__sources">
+      <strong>Sources &amp; methods:</strong> Instagram follower counts via
+      <a href="https://www.sacnilk.com/news/List_Of_Most_Followed_UFC_on_Instagram" target="_blank" rel="noopener">sacnilk.com</a>,
+      captured May 2026. Fight records and contract details
+      [[PLACEHOLDER — list each source once verified]]. All follower
+      figures, records and quotes in this prototype are illustrative
+      and unverified.
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Will McNamee</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

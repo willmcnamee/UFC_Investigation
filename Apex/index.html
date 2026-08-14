@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Apex Effect — Why the UFC Still Won't Leave Vegas</title>
+<meta name="description" content="An investigation into the UFC's continued reliance on its Apex facility, the rise of Las Vegas hosting, and who gets left out.">
+
+<!-- ============================================================
+  PROTOTYPE NOTICE
+  The Apex usage chart, the "US events aren't growing" / Las Vegas
+  share / distinct-cities charts, and the events-hosted figures in
+  the nationalities chart are REAL, pulled directly from
+  Apex_research_-_Summary.csv (see script.js DATA NOTE for exact
+  provenance of each figure). Everything else — capacity stats,
+  the streaming-deal timeline, champion nationalities/roster, and
+  every fan quote — is still PLACEHOLDER and flagged inline.
+============================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+
+<header class="masthead">
+  <div class="masthead__mark">ARTICLE&nbsp;№02</div>
+  <div class="masthead__title">Is the UFC suffering from success?&nbsp;</div>
+  <div class="masthead__meta">Investigations</div>
+</header>
+
+<!-- ============================================================
+     HERO
+============================================================= -->
+<section class="hero">
+  <div class="hero__ring" aria-hidden="true"></div>
+  <div class="hero__content">
+    <p class="eyebrow">An investigation</p>
+    <h1 class="hero__headline">The Apex<br>Effect</h1>
+    <p class="hero__deck">
+      It saved the UFC during the pandemic, but years later, they're still using
+       it. Why can the UFC not let go of the Apex?
+    </p>
+    <div class="hero__byline">
+      <span>By <strong>Will McNamee</strong></span>
+      <span class="dot">•</span>
+      <span>August 2026</span>
+      <span class="dot">•</span>
+    </div>
+  </div>
+  <button class="scroll-cue" id="scrollCue" aria-label="Scroll to begin the story">
+    <span>Scroll to begin</span>
+    <svg width="14" height="22" viewBox="0 0 14 22" fill="none"><path d="M7 1v20M1 15l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</section>
+
+<!-- ============================================================
+     LEDE — ORIGIN + CONTINUED USE
+============================================================= -->
+<section class="lede">
+  <div class="lede__col">
+    <p class="lede__drop">
+      <span class="drop-cap">T</span>he UFC Apex was never supposed to be a real venue. It was a warehouse near the UFC 
+      HQ that was bought at the end of 2018 as part of the UFC’s expansion, alongside the introduction of the UFC 
+      Performance Institute (PI). The venue was opened on June 18, 2019 and was used as the new home of Dana White’s 
+      contender series - a TV show where prospective UFC fighters compete in hopes of winning a UFC contract.<br><br> 
+
+      In 2020, however, when the COVID-19 pandemic began, the UFC were looking for ways to return to their regular 
+      schedule as soon as possible and decided to use the Apex to host events behind closed doors. The Apex was a 
+      natural choice as it was UFC-owned, a much smaller venue than a standard arena used for an event (and therefore 
+      easier for compliance with lockdown rules), and was close to the UFC HQ and PI.<br><br> 
+
+      The Apex became the UFC’s de facto home while lockdown restrictions were still in effect and enabled the UFC to 
+      continue hosting events while other major sporting organisations couldn’t.<br><br> 
+
+      The thinking at the time was that the Apex would be the perfect home base the UFC could bounce back-and-forth 
+      between while the world was opening back up until eventually normal operations were resumed.<br><br> 
+
+      The plan was sound, however six years later and with the COVID-19 pandemic firmly in the rear-view mirror, the 
+      UFC still regularly hosts events at the Apex.<br><br> 
+
+      This investigation looks at how long the UFC has leaned on the Apex after the emergency that created it ended, 
+      the impact it has on events and why the UFC are struggling to part ways with it.<br><br> 
+
+
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHAT'S SO BAD ABOUT THE APEX (FOR FANS)
+============================================================= -->
+<section class="method">
+  <div class="method__card method__card--dark">
+    <p class="method__kicker">What fans lose when it's an Apex card</p>
+    <p>
+      While an Apex event is still a live UFC card, in practice it loses lots of the 
+      buzz that attracts people to live sporting events. The Apex has a 
+      capacity of 1,000 people making it far smaller than the standard arena the UFC 
+      traditionally hosted events at.<br><br>
+      
+      This translates directly to the live viewer 
+      experience as there is a noticeably lacking atmosphere at these events, even 
+      when witnessing some of the jaw-dropping moments MMA is capable of:<br><br>
+
+
+      This 1,000-person capacity is only a recent development too; prior to 2025 the 
+      Apex could only hold 500 people and many of these tickets were reserved for 
+      friends and family of competing athletes.  
+ 
+    </p>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     SCROLLYTELLING A — APEX USAGE SINCE 2020
+============================================================= -->
+<section class="apexstory" id="apexstory">
+  <div class="apexstory__sticky">
+    <div class="apexstory__stage">
+      <div class="stage__header">
+        <p class="stage__label" id="apexStageLabel">Step 1 of 3</p>
+        <h2 class="stage__title" id="apexStageTitle">Built for an emergency</h2>
+        <p class="stage__sub" id="apexStageSub">Apex events as a share of the entire global UFC calendar, 2018–2026</p>
+      </div>
+
+      <div class="axisChart" id="apexChart" role="img" aria-label="Bar chart of Apex events per year, 2018 to 2026"></div>
+
+      <p class="apexstory__note" id="apexNote">The Apex opens in 2020 and, within a year, is hosting 72% of every UFC event held anywhere in the world.</p>
+    </div>
+  </div>
+
+  <div class="apexstory__steps">
+    <div class="step" data-step="0">
+      <p class="step__num">01</p>
+      <p class="step__text">In its debut year, the Apex hosted 45.65% of events - even more significant when you consider 
+        that its first appearance wasn't until the 30th of May.<br><br>
+</p>
+    </div>
+    <div class="step" data-step="1">
+      <p class="step__num">02</p>
+      <p class="step__text">In its first full year, 2021, it hosted 72% of all UFC events.<br><br>
+        
+        Arenas had started to open up again but it wasn’t until September when all other major US sporting organisations 
+        (NFL, NBA, MLB, NHL) had fully reopened their stadiums. </p>
+    </div>
+    <div class="step" data-step="2">
+      <p class="step__num">03</p>
+      <p class="step__text">By 2022, global sporting events had returned to normal operation: the 2022 Winter Olympics 
+        in February had full-capacity venues, as did the FIFA World Cup in November.<br><br>
+
+        However, we didn’t see a similar tapering off from the UFC, with 50% of all UFC events still being hosted at 
+        the Apex.<br><br>
+</p>
+    </div>
+
+    <div class="step" data-step="3">
+      <p class="step__num">04</p>
+      <p class="step__text">From 2023 onwards, the UFC has consistently hosted over a quarter of its events at the 
+        Apex despite it no longer being a necessity.<br><br>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     BRIDGE — INTO LAS VEGAS EXPLANATION
+============================================================= -->
+<section class="bridge bridge--text">
+  <p class="bridge__kicker">So it's not really about the pandemic any more.<br><br><br><br></p>
+  <p class="bridge__kicker">What have the knock-on effects been?</p>
+
+  <svg class="bridge__arrow" width="34" height="14" viewBox="0 0 34 14" fill="none" aria-hidden="true"><path d="M1 1c6 6 10 11 16 11s10-5 16-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+</section>
+
+<!-- ============================================================
+     SCROLLYTELLING B — VEGAS DOMINANCE
+============================================================= -->
+<section class="vegasstory" id="vegasstory">
+  <div class="vegasstory__sticky">
+    <div class="vegasstory__stage">
+      <div class="stage__header">
+        <p class="stage__label" id="vegasStageLabel">Step 1 of 3</p>
+        <h2 class="stage__title" id="vegasStageTitle">The influx of US events</h2>
+        <p class="stage__sub" id="vegasStageSub">Total UFC events held in the US per year</p>
+      </div>
+
+      <div class="miniChart miniChart--big" id="vegasChart"></div>
+    </div>
+  </div>
+
+  <div class="vegasstory__steps">
+    <div class="step" data-step="0">
+      <p class="step__num">01</p>
+      <p class="step__text">Start with the totals: in the lead up to the pandemic the 
+        UFC consistently held 22-23 events in the US annually.</p><br> 
+
+        <p class="step__text">The totals increased during the height of the pandemic 
+          as more events were held at the Apex, peaking at 39 annually.</p><br>
+
+        <p class="step__text">In recent years, this figure has started dropping again 
+          but still hovers above the average pre-pandemic figure.</p>
+</p>
+    </div>
+    <div class="step" data-step="1">
+      <p class="step__num">02</p>
+      <p class="step__text">While we do now have slightly more events in the US than 
+        before, it’s the locations within the US that are more interesting.</p><br>
+
+      <p class="step__text">Even as of this year, nearly 50% of the UFC events held in 
+        the US are Apex events.<br><br>
+        
+      </p>
+
+      <p class="step__text">So even though there are more US events, there’s actually less opportunities for fans to 
+        attend an event.</p>
+    </div>
+    <div class="step" data-step="2">
+      <p class="step__num">03</p>
+      <p class="step__text">The knock-on effect is that the UFC is visiting less cities across the US than it used to.
+      </p><br>
+
+       <p class="step__text">On average the UFC is visiting 12 different US cities a year compared to 17
+         pre-pandemic.</p><br>
+
+        <p class="step__text">That’s five less chances for fans across the US to attend a live UFC event in 
+        their local area.</p><br>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY IS THE UFC DOING THIS — STREAMING DEALS
+============================================================= -->
+<section class="method">
+  <div class="method__card">
+    <p class="method__kicker">So why keep doing it?</p>
+    <p>
+      The simple answer is it’s cheaper and more logistically simple. During the pandemic 
+      the UFC realised they could continue to fulfill their contractual obligations to their 
+      streaming platforms whether they were putting on events in the Apex or across the 
+      world.<br><br>
+
+      Touring fewer cities and running more cards from a fixed in-house studio is 
+      cheaper and logistically simpler. That means no arena rental, no full production build,
+      no travel costs for a touring crew.<br><br> 
+      
+      That simple calculation has gotten more attractive,
+      not less, as the UFC's business has shifted from ticket sales toward its broadcast 
+      and streaming contracts.<br><br>
+
+     <a href="https://www.youtube.com/watch?v=0psZiZEIhWo"
+     target="_blank"
+     rel="noopener">This piece</a> from MMA On Point also shows that the Apex is being
+     used to host weaker events. They show that since the Pandemic, the percentage 
+     of 'bad' headline fights has been increasing and the majority of the fights they 
+     label as 'bad' are being hosted at the Apex.<br><br>
+     
+     This backs up the suggestion that the UFC are using the Apex as a way to fulfill
+     their contractual obligation by putting on X number of fights a year, even if the
+     calibre of fights and viewing experience is diminished.
+    </p>
+    </div>
+</section>
+
+<!-- ============================================================
+     SCROLLYTELLING C — STREAMING DEAL TIMELINE (HORIZONTAL)
+============================================================= -->
+<section class="dealstory" id="dealstory">
+  <div class="dealstory__sticky">
+    <div class="dealstory__header">
+      <p class="stage__label" id="dealStageLabel">Deal 1 of 6</p>
+      <h2 class="stage__title">Follow the money</h2>
+      <p class="stage__sub">Keep scrolling to track the UFC’s broadcasting deals over time</p>
+    </div>
+    <div class="dealTrack__viewport">
+      <div class="dealTrack" id="dealTrack"></div>
+    </div>
+    <div class="dealTrack__progress" aria-hidden="true">
+      <span class="dealTrack__progressFill" id="dealProgressFill"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAN INTERVIEWS
+============================================================= -->
+<section class="voxpop">
+  <div class="voxpop__header">
+    <p class="stage__label">In their own words</p>
+    <h2 class="stage__title">What fans actually think</h2>
+    <p class="stage__sub">
+  </div>
+
+  <div class="voxpop__grid">
+    <blockquote class="quoteCard">
+      <p> *PLACEHOLDER QUOTE* </p>
+      <footer><strong>[[Fan name]]</strong>, [[City, Country]] · [[age / fan since year]]</footer>
+    </blockquote>
+
+    <blockquote class="quoteCard">
+      <p> *PLACEHOLDER QUOTE* </p>
+      <footer><strong>[[Fan name]]</strong>, [[City, Country]] · [[age / fan since year]]</footer>
+    </blockquote>
+
+    <blockquote class="quoteCard">
+      <p>*PLACEHOLDER QUOTE* </p>
+      <footer><strong>[[Fan name]]</strong>, [[City, Country]] · [[age / fan since year]]</footer>
+    </blockquote>
+
+    <blockquote class="quoteCard">
+      <p>*PLACEHOLDER QUOTE* </p>
+      <footer><strong>[[Fan name]]</strong>, [[City, Country]] · [[age / fan since year]]</footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============================================================
+     OUTRO
+============================================================= -->
+<section class="outro">
+  <div class="outro__col">
+    <h2 class="outro__title">A studio that became a home</h2>
+    <p>
+      The Apex solved a real problem in 2020. It represented a return
+       to live UFC events for fans the world over. What it's doing on 
+       the calendar in 2026 is a different question and the answer looks
+        less like emergency planning and more like a permanent, cheaper
+         way of running the business. With guaranteed revenue up front 
+         and a freshly inked deal with Meta, there’s no sign of reverting 
+         back to the pre-pandemic touring schedule. 
+    </p>
+    <p class="outro__sources">
+      <strong>Sources &amp; methods:</strong> Apex usage, US event
+      totals, Las Vegas hosting share, distinct-city counts and
+      per-country event totals are drawn from
+      <code>Apex_research_-_Summary.csv</code>, 2016–2026 (2026
+      figures are partial-year). Champion nationalities/roster,
+      venue-capacity figures, streaming-deal terms and all fan
+      quotes remain placeholder pending further data and real,
+      consented interviews. 
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Will McNamee</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

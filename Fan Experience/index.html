@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Changing Live UFC Experience — Ticket Prices, Atmosphere and Card Quality</title>
+<meta name="description" content="An investigation into how the live UFC experience has changed: rising ticket prices, diminished atmosphere and weakening card quality, in fans' own words.">
+
+<!-- ============================================================
+  PROTOTYPE NOTICE
+  All copy and the ticket-price chart data are final (see script.js
+  DATA NOTE for provenance: average price by year, adjusted for
+  inflation to 2007 $).
+============================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__mark">ARTICLE&nbsp;№04</div>
+  <div class="masthead__title">The Changing Live UFC Experience&nbsp;</div>
+  <div class="masthead__meta">Investigations</div>
+</header>
+
+<!-- ============================================================
+     HERO
+============================================================= -->
+<section class="hero">
+  <div class="hero__ring" aria-hidden="true"></div>
+  <div class="hero__content">
+    <p class="eyebrow">An investigation</p>
+    <h1 class="hero__headline">The Changing<br>Live Experience</h1>
+    <p class="hero__deck">
+      Ticket prices, atmosphere and the quality of the cards themselves — long-time fans say the live UFC
+      experience isn't what it used to be. Four fans explain why, in their own words.
+    </p>
+    <div class="hero__byline">
+      <span>By <strong>Will McNamee</strong></span>
+      <span class="dot">•</span>
+      <span>August 2026</span>
+      <span class="dot">•</span>
+    </div>
+  </div>
+  <button class="scroll-cue" id="scrollCue" aria-label="Scroll to begin the story">
+    <span>Scroll to begin</span>
+    <svg width="14" height="22" viewBox="0 0 14 22" fill="none"><path d="M7 1v20M1 15l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</section>
+
+<!-- ============================================================
+     LEDE — INTRO
+============================================================= -->
+<section class="lede">
+  <div class="lede__col">
+    <p class="lede__drop">
+      <span class="drop-cap">I</span>n recent years there has been a sentiment amongst fans that the experience of
+      attending a live UFC event has changed.
+    </p>
+    <p>
+      Whether it’s the quality of cards, ticket prices or the atmosphere of the fans, many fans and media members
+      agree that events in general are losing their magic.
+    </p>
+    <p>
+      That isn’t to say that all UFC events are declining – milestone events like the UFC White House Card, UFC 300
+      and the Sphere card show that when the UFC pulls out all the stops, they can make the sport of MMA a spectacle
+      unlike any other.
+    </p>
+    <p>
+      But fans who have been attending UFC events over a prolonged period of time have noticed a drop in the
+      average experience.
+    </p>
+    <p>
+      As part of this investigation, I spoke to four UFC fans and asked them what they believe are the biggest
+      changes to the live UFC experience in recent years.
+    </p>
+    <p>
+      This investigation will look at the common threads across these discussions and take a deeper look at the
+      increase in ticket prices over the last 20 years.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER — TICKET PRICES (intro)
+============================================================= -->
+<section class="method">
+  <div class="method__card">
+    <p class="method__kicker">Ticket prices</p>
+    <p>
+      Ticket prices are one of the most controversial topics amongst UFC event attendees with almost all fans who
+      have attended events in recent years commenting on the increase over time.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCROLLYTELLING — TICKET PRICE, 2007–2026
+============================================================= -->
+<section class="ticketstory" id="ticketstory">
+  <div class="ticketstory__sticky">
+    <div class="ticketstory__stage">
+      <div class="stage__header">
+        <p class="stage__label" id="ticketStageLabel">Step 1 of 3</p>
+        <h2 class="stage__title" id="ticketStageTitle">Ticket prices, 2007–2026</h2>
+        <p class="stage__sub" id="ticketStageSub">Average UFC ticket price by year, adjusted for inflation (2007 $)</p>
+      </div>
+
+      <div class="axisChart" id="ticketChart" role="img" aria-label="Bar chart of average UFC ticket price in US dollars by year, adjusted for inflation, 2007 to 2026"></div>
+
+      <div class="legend" id="ticketLegend" style="display:none;">
+        <span class="legend__item"><i class="dot dot--muted"></i> 2007–2015</span>
+        <span class="legend__item"><i class="dot dot--crimson"></i> 2016–2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticketstory__steps">
+    <div class="step" data-step="0">
+      <p class="step__num">01</p>
+      <p class="step__text">Here's the average UFC ticket price for every year from 2007 to 2026.</p>
+    </div>
+    <div class="step" data-step="1">
+      <p class="step__num">02</p>
+      <p class="step__text">Group those years together and a clear pattern emerges: two distinct eras, split
+        right around 2016.</p>
+    </div>
+    <div class="step" data-step="2">
+      <p class="step__num">03</p>
+      <p class="step__text">The headline comparison: the 2016–2026 average is over double what fans were paying
+        in the 2007–2015 era.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER — TICKET PRICES (fan reactions)
+============================================================= -->
+<section class="lede">
+  <div class="lede__col">
+    <p>Ticket prices were an area that all fans unanimously agreed was a problem:</p>
+
+    <div class="voxpop__grid">
+      <blockquote class="quoteCard">
+        <p>Ticket price is a massive thing. I would say that’s probably the biggest thing actually… I’ve been
+          watching the sport for over 10 years now but I wouldn’t even now, as a fan, I wouldn’t consider buying
+          tickets</p>
+        <footer><strong>Robert Smith</strong>, MMA journalist covering the sport pitch-side</footer>
+      </blockquote>
+
+      <blockquote class="quoteCard">
+        <p>It's staggering — like an extra 30% of what I paid before to now attend... I think fans are being
+          priced out by these extortionate ticket prices.</p>
+        <footer><strong>Emma Porter</strong></footer>
+      </blockquote>
+
+      <blockquote class="quoteCard">
+        <p>You can go watch a Cage Warriors show for 66 quid... I was in the top rows of the O2 and I think I paid
+          around £150 to watch two microscopic UFC fighters fight... what felt like miles away.</p>
+        <footer><strong>Henri Crépin-Leblond</strong></footer>
+      </blockquote>
+
+      <blockquote class="quoteCard">
+        <p>And then going to the other event, UFC London, Edwards versus Brady, it was almost just as much, but it
+          was a fight night instead of a numbered card. And I think that really just sums up to me that I think the
+          prices are really not fair. They always seem to be increasing, even if it's just by a little margin.</p>
+        <footer><strong>Charlie Oxtoby</strong></footer>
+      </blockquote>
+    </div>
+
+    <h3>Why have ticket prices increased then?</h3>
+    <p>
+      While the sport of MMA has grown significantly, it would be unfair to say that there are more stars in the
+      UFC now than there were in the past. Prior to 2016, the UFC still had stars like Ronda Rousey, Georges St
+      Pierre, Anderson Silva, Jon Jones and Brock Lesnar headlining cards.
+    </p>
+    <p>
+      The real difference may have been that one star eclipsed them all. 2016 was the year of Conor McGregor –
+      becoming a simultaneous double-champion combined with his brash persona saw him elevate to a level of
+      stardom that transcended the sport:
+    </p>
+
+    <div class="voxpop__grid">
+      <blockquote class="quoteCard">
+        <p>Maybe it has some impact to do with how in that era with Conor McGregor coming out and being one of the
+          biggest stars in MMA, and clearly the UFC must have thought that there was going to be even more stars
+          who were going to be just as big.</p>
+        <footer><strong>Charlie Oxtoby</strong></footer>
+      </blockquote>
+
+      <blockquote class="quoteCard">
+        <p>I think it's the Conor McGregor effect that you can't see the timelines that 2016 was sort of the height
+          of the McGregor era. I think, unfortunately, it's a good and bad thing because, one, it was great for all
+          our fans in, but also, I think with that popularity of the UFC they started thinking okay, we can make a
+          bit more money here, let's increase these prices.</p>
+        <footer><strong>Robert Smith</strong></footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER — ATMOSPHERE
+============================================================= -->
+<section class="lede">
+  <div class="lede__col">
+    <h2 class="outro__title">Atmosphere</h2>
+    <p>
+      Atmosphere was another hot topic amongst fans when discussing the changes to recent UFC events.
+    </p>
+    <p>
+      Most interviewees agreed that at recent UFC events they’d attended, the atmosphere was diminished compared
+      to either previous events or failed to meet their expectations prior to the event.
+    </p>
+
+    <blockquote class="quoteCard">
+      <p>When I did Glasgow, first, I was a fan... the whole crowd erupted... [at UFC London] it was not until
+        midway through to the end of the prelims that the venue started to fill out.</p>
+      <footer><strong>Robert Smith</strong></footer>
+    </blockquote>
+
+    <p>Ticket prices have been a large contributor to this diminished atmosphere:</p>
+
+    <div class="voxpop__grid">
+      <blockquote class="quoteCard">
+        <p>[On whether ticket prices have affected event atmospheres] Yeah, do you know what, I do … It feels like
+          people, like at the most recent event in March 26, like, it just feels like people were just sort of
+          cheering to cheer.</p>
+        <footer><strong>Emma Porter</strong></footer>
+      </blockquote>
+
+      <blockquote class="quoteCard">
+        <p>The UFC can't expect the fans to just show full support, full atmosphere, (20:55) full passion towards
+          the event, if they're having to pay so much money.</p>
+        <footer><strong>Charlie Oxtoby</strong></footer>
+      </blockquote>
+    </div>
+
+    <p>There’s also an argument made that the pricing of tickets is changing the kinds of fans in attendance:</p>
+
+    <div class="voxpop__grid">
+      <blockquote class="quoteCard">
+        <p>I think fans are being priced out by these extortionate ticket prices.</p>
+        <footer><strong>Emma Porter</strong></footer>
+      </blockquote>
+
+      <blockquote class="quoteCard">
+        <p>There just doesn't seem as much passion. And I think it is because the level of fanship or level of
+          fan, however you want to phrase it, is that they have actually no idea who these people are.</p>
+        <footer><strong>Emma Porter</strong></footer>
+      </blockquote>
+
+      <blockquote class="quoteCard">
+        <p>The fans that go to the smaller shows... they are real, real fans. UFC is such a big brand that I don't
+          think everyone in the crowd is necessarily a mega UFC fan.</p>
+        <footer><strong>Henri Crépin-Leblond</strong></footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHAPTER — WEAKENING CARD QUALITY
+============================================================= -->
+<section class="lede">
+  <div class="lede__col">
+    <h2 class="outro__title">Weakening card quality</h2>
+    <p>
+      The strength of cards has been one of the most prevalent complaints amongst UFC fans in recent years. Many
+      fans have complained that the UFC fails to adequately stack each UFC event with the quality of matchups it
+      deserves:
+    </p>
+
+    <blockquote class="quoteCard">
+      <p>You look at UFC 205 when Conor McGregor won the lightweight title off Eddie Alvarez — you had fighters
+        like Khabib [Nurmagomedov] and Frank Edgar on the prelims. You would never see something like that happen
+        nowadays... because they've got so many different licensing deals with Paramount, Fox, ESPN — they've got
+        to fulfil these deals, put on a certain amount of events per year. I don't think they've got the quality of
+        fighters to produce the good quality cards fans want to see.</p>
+      <footer><strong>Robert Smith</strong></footer>
+    </blockquote>
+
+    <p>
+      This argument has been particularly loud amongst UK fans with many suggesting UK events are suffering from a
+      lack of star power and poor matchmaking.
+    </p>
+
+    <div class="voxpop__grid">
+      <blockquote class="quoteCard">
+        <p>You've got Nathaniel Wood, who's probably been the best two fights I've seen live at UFC, and they're
+          still giving him unranked opponents.</p>
+        <footer><strong>Henri Crépin-Leblond</strong></footer>
+      </blockquote>
+
+      <blockquote class="quoteCard">
+        <p>I don't think we'll see Tom Aspinall or Paddy Pimblett fight in the UK again if it's not a
+          pay-per-view... once the fight reaches a certain level, they outgrow the UK market.</p>
+        <footer><strong>Robert Smith</strong></footer>
+      </blockquote>
+    </div>
+
+    <p>
+      Not all fans put this responsibility solely on the UFC, however. Some argue that disappointing contests are a
+      part of the sport, regardless of the UFC’s matchmaking decisions.
+    </p>
+
+    <blockquote class="quoteCard">
+      <p>I don't think we can blame the UFC for the downgrading quality... it's more fans' expectations, ready to
+        see something special, through social media highlight reels. You could look at McGregor versus Holloway —
+        we were expecting a war, and it ends in disappointment due to an injury. There's always that small
+        possibility.</p>
+      <footer><strong>Charlie Oxtoby</strong></footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============================================================
+     SUMMARY / OUTRO
+============================================================= -->
+<section class="outro">
+  <div class="outro__col">
+    <h2 class="outro__title">Summary</h2>
+    <p>
+      It’s fair to say that overall fans are feeling let down by the quality of UFC events. Rising ticket prices,
+      weakening cards and suffering event atmospheres are all contributing to this perceived decline in the live
+      UFC event experience.
+    </p>
+    <p>
+      Fans and media are recognising that the UFC’s focus is shifting more than ever to commercial progress and
+      it’s impacting the quality of events;
+    </p>
+
+    <div class="voxpop__grid">
+      <blockquote class="quoteCard">
+        <p>I just think that ultimately, the UFC are, like you could say for a long time about the business, but I
+          just think they are so interested in the profit side of things… And like I think sometimes as fans, like
+          we just sort of let the UFC get away with s*** that ultimately doesn't make the business better. It harms
+          it. Yeah, I just think it is really showing in a live experience.</p>
+        <footer><strong>Emma Porter</strong></footer>
+      </blockquote>
+
+      <blockquote class="quoteCard">
+        <p>I think The UFC is entertainment more than a sport these days... it's gone down that sort of WWE
+          storylines route... it's all about the big money.</p>
+        <footer><strong>Robert Smith</strong></footer>
+      </blockquote>
+    </div>
+
+    <p class="outro__sources">
+      <strong>Sources &amp; methods:</strong> Fan quotes are drawn from interviews conducted for this investigation
+      with Charlie Oxtoby, Emma Porter, Henri Crépin-Leblond and Robert Smith. Ticket-price figures are average
+      prices by year, adjusted for inflation to 2007 $: $124.80 average across 2007–2015 vs $269.72 across
+      2016–2026, a 2.16× increase.
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Will McNamee</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

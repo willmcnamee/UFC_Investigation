@@ -1,0 +1,9 @@
+::1 - - [30/Jul/2026 10:53:50] "GET /index.html HTTP/1.1" 200 -
+::1 - - [30/Jul/2026 10:56:01] "GET /index.html HTTP/1.1" 200 -
+::1 - - [30/Jul/2026 10:56:01] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [30/Jul/2026 10:56:01] "GET /script.js HTTP/1.1" 200 -
+::1 - - [30/Jul/2026 10:56:03] "GET /Events_with_controversy.csv HTTP/1.1" 200 -
+::1 - - [30/Jul/2026 10:56:34] "GET /index.html HTTP/1.1" 200 -
+::1 - - [30/Jul/2026 10:56:34] "GET /styles.css HTTP/1.1" 200 -
+::1 - - [30/Jul/2026 10:56:34] "GET /script.js HTTP/1.1" 200 -
+::1 - - [30/Jul/2026 10:56:34] "GET /Events_with_controversy.csv HTTP/1.1" 200 -
