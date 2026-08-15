@@ -238,9 +238,8 @@ function attachBarTooltip(el, content){
 /* ==============================================================
    APEX USAGE CHART (scrollytelling, single series)
    ------------------------------------------------------------
-   Real y-axis in event counts (ticks every 10, rounded up to the
-   next 10 above the highest bar). Percentages live in the prose
-   (stage sub/note text) only, not on the chart itself.
+   Y-axis is Apex's share of that year's global UFC calendar (%),
+   not raw event counts — raw counts live in the tooltip only.
    =============================================================== */
 const apexChartEl = document.getElementById("apexChart");
 const apexStageLabel = document.getElementById("apexStageLabel");
@@ -261,27 +260,31 @@ function computeAxis(max){
 
 async function initApexUsageChart(){
   const APEX_USAGE = await loadApexUsage();
-  const { axisMax, ticks } = computeAxis(Math.max(...APEX_USAGE.map(d => d.events)));
+  const { axisMax, ticks } = computeAxis(Math.max(...APEX_USAGE.map(d => d.pct)));
 
   function buildApexChart(){
     apexChartEl.innerHTML = `
       <div class="axisChart__inner">
+        <div class="axisChart__ylabel">Share of global calendar</div>
         <div class="axisChart__yaxis">
-          ${ticks.map(t => `<span class="axisChart__tick" style="bottom:${(t / axisMax * 100).toFixed(2)}%">${t}</span>`).join("")}
+          ${ticks.map(t => `<span class="axisChart__tick" style="bottom:${(t / axisMax * 100).toFixed(2)}%">${t}%</span>`).join("")}
         </div>
         <div class="axisChart__plot">
           <div class="axisChart__grid">
-            ${ticks.map(t => `<div class="axisChart__gridline${t === 0 ? " axisChart__gridline--zero" : ""}" style="bottom:${(t / axisMax * 100).toFixed(2)}%"></div>`).join("")}
+            ${ticks.filter(t => t > 0).map(t => `<div class="axisChart__gridline" style="bottom:${(t / axisMax * 100).toFixed(2)}%"></div>`).join("")}
           </div>
           <div class="barChart__row">
             ${APEX_USAGE.map(d => `
               <div class="barChart__col" data-year="${d.year}">
-                <div class="barChart__bar" style="height:0%" data-target="${(d.events / axisMax * 100).toFixed(1)}"></div>
-                <span class="barChart__label">${d.year}</span>
+                <div class="barChart__bar" style="height:0%" data-target="${(d.pct / axisMax * 100).toFixed(1)}"></div>
               </div>`).join("")}
           </div>
         </div>
+        <div class="axisChart__xaxis barChart__row">
+          ${APEX_USAGE.map(d => `<div class="axisChart__xaxis-col"><span class="barChart__label">${d.year}</span></div>`).join("")}
+        </div>
       </div>
+      <p class="axisChart__xlabel">Year</p>
     `;
     // trigger to full height on next frame for a nice load-in
     requestAnimationFrame(() => {
@@ -293,8 +296,8 @@ async function initApexUsageChart(){
     apexChartEl.querySelectorAll(".barChart__col").forEach((col, i) => {
       const d = APEX_USAGE[i];
       const rows = [
-        { value: String(d.events), label: "Apex events" },
         { value: `${d.pct}%`, label: "of that year's global calendar" },
+        { value: String(d.events), label: "Apex events" },
       ];
       attachBarTooltip(col.querySelector(".barChart__bar"), {
         title: String(d.year),
@@ -390,12 +393,13 @@ async function initVegasChart(){
           <span class="legend__item"><span class="dot dot--paleblue"></span>Non-Apex</span>
         </div>
         <div class="axisChart__inner">
+          <div class="axisChart__ylabel">US events</div>
           <div class="axisChart__yaxis">
             ${ticks.map(t => `<span class="axisChart__tick" style="bottom:${(t / axisMax * 100).toFixed(2)}%">${t}</span>`).join("")}
           </div>
           <div class="axisChart__plot">
             <div class="axisChart__grid">
-              ${ticks.map(t => `<div class="axisChart__gridline${t === 0 ? " axisChart__gridline--zero" : ""}" style="bottom:${(t / axisMax * 100).toFixed(2)}%"></div>`).join("")}
+              ${ticks.filter(t => t > 0).map(t => `<div class="axisChart__gridline" style="bottom:${(t / axisMax * 100).toFixed(2)}%"></div>`).join("")}
             </div>
             <div class="miniChart__row">
             ${years.map((year,i)=>`
@@ -405,11 +409,14 @@ async function initVegasChart(){
                   <div class="miniChart__bar miniChart__bar--apex" data-i="${i}" style="height:${(apex[i]/totals[i]*100 || 0)}%"></div>
                   <div class="miniChart__bar miniChart__bar--nonapex" data-i="${i}" style="height:${(nonApex[i]/totals[i]*100 || 0)}%"></div>
                 </div>
-                <span class="miniChart__label">${year}</span>
               </div>`).join("")}
             </div>
           </div>
+          <div class="axisChart__xaxis miniChart__row">
+            ${years.map(year => `<div class="axisChart__xaxis-col"><span class="miniChart__label">${year}</span></div>`).join("")}
+          </div>
         </div>
+        <p class="axisChart__xlabel">Year</p>
       `;
 
       requestAnimationFrame(() => {
@@ -439,30 +446,34 @@ async function initVegasChart(){
         });
       });
     } else {
-      const { values, barClass, title, unitLabel, showValue } = config;
+      const { values, barClass, title, unitLabel, showValue, yLabel } = config;
       const { axisMax, ticks } = computeAxis(Math.max(...values));
       const sum = values.reduce((a, b) => a + b, 0);
 
       vegasChartEl.innerHTML = `
         <p class="miniChart__title">${title}</p>
         <div class="axisChart__inner">
+          <div class="axisChart__ylabel">${yLabel}</div>
           <div class="axisChart__yaxis">
             ${ticks.map(t => `<span class="axisChart__tick" style="bottom:${(t / axisMax * 100).toFixed(2)}%">${t}</span>`).join("")}
           </div>
           <div class="axisChart__plot">
             <div class="axisChart__grid">
-              ${ticks.map(t => `<div class="axisChart__gridline${t === 0 ? " axisChart__gridline--zero" : ""}" style="bottom:${(t / axisMax * 100).toFixed(2)}%"></div>`).join("")}
+              ${ticks.filter(t => t > 0).map(t => `<div class="axisChart__gridline" style="bottom:${(t / axisMax * 100).toFixed(2)}%"></div>`).join("")}
             </div>
             <div class="miniChart__row">
             ${values.map((v,i)=>`
               <div class="miniChart__col">
                 ${showValue ? `<span class="miniChart__val">${v}</span>` : ""}
                 <div class="miniChart__bar ${barClass}" data-i="${i}" style="height:0%" data-target="${(v/axisMax*100).toFixed(1)}"></div>
-                <span class="miniChart__label">${years[i]}</span>
               </div>`).join("")}
             </div>
           </div>
+          <div class="axisChart__xaxis miniChart__row">
+            ${years.map(year => `<div class="axisChart__xaxis-col"><span class="miniChart__label">${year}</span></div>`).join("")}
+          </div>
         </div>
+        <p class="axisChart__xlabel">Year</p>
       `;
 
       requestAnimationFrame(() => {
@@ -485,9 +496,9 @@ async function initVegasChart(){
   }
 
   const VEGAS_CHARTS = {
-    total: () => buildBigChart({ type: "single", values: VEGAS_DATA.totalUSEvents, barClass: "miniChart__bar--total", title: "Total UFC events held in the US, per year", unitLabel: "US events", showValue: true }),
+    total: () => buildBigChart({ type: "single", values: VEGAS_DATA.totalUSEvents, barClass: "miniChart__bar--total", title: "Total UFC events held in the US, per year", unitLabel: "US events", showValue: true, yLabel: "US events" }),
     stacked: () => buildBigChart({ type: "stacked", apex: VEGAS_DATA.apexEvents, nonApex: VEGAS_DATA.nonApexEvents, title: "Apex vs non-Apex UFC events held in the US" }),
-    cities: () => buildBigChart({ type: "single", values: VEGAS_DATA.distinctCities, barClass: "miniChart__bar--cities", title: "Distinct US cities hosting a UFC card", unitLabel: "distinct cities", showValue: false }),
+    cities: () => buildBigChart({ type: "single", values: VEGAS_DATA.distinctCities, barClass: "miniChart__bar--cities", title: "Distinct US cities hosting a UFC card", unitLabel: "distinct cities", showValue: false, yLabel: "Distinct cities" }),
   };
 
   let currentVegasChart = null;
@@ -564,6 +575,10 @@ function initDealTimeline(){
 
   const cards = Array.from(track.children);
   const isPinned = () => window.matchMedia("(min-width: 881px)").matches;
+  // How much extra vertical scroll the section demands per pixel the
+  // track actually travels horizontally. 1 = 1:1 (old behavior); higher
+  // = more scrolling needed to move between cards.
+  const SCROLL_SENSITIVITY = 1.8;
   let maxShift = 0;
 
   function layout(){
@@ -576,7 +591,8 @@ function initDealTimeline(){
       return;
     }
     maxShift = Math.max(0, track.scrollWidth - viewport.clientWidth);
-    section.style.height = `calc(100vh + ${maxShift}px)`;
+    const scrollDistance = maxShift * SCROLL_SENSITIVITY;
+    section.style.height = `calc(100vh + ${scrollDistance}px)`;
     update();
   }
 
