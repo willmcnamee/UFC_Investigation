@@ -27,19 +27,46 @@
 
 
 <!-- ============================================================
-     MASTHEAD
+     MASTHEAD + COLLAGE
+     Wrapped together so the collage always fills the rest of the
+     first viewport, however tall the masthead bar renders.
 ============================================================= -->
-<header class="masthead">
-  <div class="masthead__mark">ARTICLE&nbsp;№01</div>
-  <div class="masthead__title">Is the UFC suffering from success?&nbsp;</div>
-  <div class="masthead__meta">Investigations</div>
-</header>
+<div class="firstScreen">
+  <header class="masthead">
+    <div class="masthead__title">Is the UFC suffering from success?&nbsp;</div>
+  </header>
+
+  <section class="collage">
+    <svg class="collage__svg" viewBox="0 0 1000 532.32" preserveAspectRatio="xMidYMid meet"
+         role="img" aria-label="Collage of six UFC fighters: Conor McGregor, Francis Ngannou, Jon Jones, Nate Diaz, Ronda Rousey and Arman Tsarukyan">
+      <image class="collage__img" href="Images/collage/Conor McGregor.png" aria-label="Conor McGregor"
+             x="0.00" y="0.00" width="476.37" height="305.33"/>
+      <image class="collage__img" href="Images/collage/Francis Ngannou.png" aria-label="Francis Ngannou"
+             x="476.37" y="0.00" width="217.76" height="305.33"/>
+      <image class="collage__img" href="Images/collage/Jon Jones.png" aria-label="Jon Jones"
+             x="694.12" y="0.00" width="305.88" height="305.33"/>
+      <image class="collage__img" href="Images/collage/Nate Diaz.png" aria-label="Nate Diaz"
+             x="0.00" y="305.33" width="259.95" height="226.99"/>
+      <image class="collage__img" href="Images/collage/Ronda Rousey.png" aria-label="Ronda Rousey"
+             x="259.95" y="305.33" width="337.24" height="226.99"/>
+      <image class="collage__img" href="Images/collage/Arman Tsarukyan.png" aria-label="Arman Tsarukyan"
+             x="597.19" y="305.33" width="402.81" height="226.99"/>
+    </svg>
+    <div class="collage__mobile">
+      <img src="Images/collage/Conor McGregor.png" alt="Conor McGregor" loading="lazy">
+      <img src="Images/collage/Francis Ngannou.png" alt="Francis Ngannou" loading="lazy">
+      <img src="Images/collage/Jon Jones.png" alt="Jon Jones" loading="lazy">
+      <img src="Images/collage/Nate Diaz.png" alt="Nate Diaz" loading="lazy">
+      <img src="Images/collage/Ronda Rousey.png" alt="Ronda Rousey" loading="lazy">
+      <img src="Images/collage/Arman Tsarukyan.png" alt="Arman Tsarukyan" loading="lazy">
+    </div>
+  </section>
+</div>
 
 <!-- ============================================================
      HERO
 ============================================================= -->
 <section class="hero">
-  <div class="hero__ring" aria-hidden="true"></div>
   <div class="hero__content">
     <p class="eyebrow">An investigation</p>
     <h1 class="hero__headline">The absence<br>of the UFC's<br>biggest stars</h1>
@@ -92,25 +119,23 @@
 </section>
 
 <!-- ============================================================
-     METHODOLOGY CALLOUT
+     METHODOLOGY
 ============================================================= -->
-<section class="method">
-  <div class="method__card">
-    <p class="method__kicker">How I measured stardom</p>
+<section class="outro">
+  <div class="outro__col">
+    <h2 class="outro__title">How I measured stardom</h2>
     <p>
       To rank the UFC's biggest stars, I used each fighter's Instagram
       follower count as of <strong>May 2026</strong> as a proxy for name recognition.
-      I took the top 15, treating the list as an unofficial divisional ranking for 
+      I took the top 15, treating the list as an unofficial divisional ranking for
       popularity.
     </p>
-    
-    <p class="method__note">
-  The source for Instagram follower count can be found
-  <a href="https://www.sacnilk.com/news/List_Of_Most_Followed_UFC_on_Instagram"
-     target="_blank"
-     rel="noopener">here</a>.
-</p>
-
+    <p class="outro__sources">
+      <strong>Source:</strong> Instagram follower counts via
+      <a href="https://www.sacnilk.com/news/List_Of_Most_Followed_UFC_on_Instagram"
+         target="_blank"
+         rel="noopener">sacnilk.com</a>.
+    </p>
   </div>
 </section>
 
