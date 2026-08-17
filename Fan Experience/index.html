@@ -22,16 +22,13 @@
 <body>
 
 <header class="masthead">
-  <div class="masthead__mark">ARTICLE&nbsp;№04</div>
-  <div class="masthead__title">The Changing Live UFC Experience&nbsp;</div>
-  <div class="masthead__meta">Investigations</div>
+  <div class="masthead__title">Is the UFC suffering from success?&nbsp;</div>
 </header>
 
 <!-- ============================================================
      HERO
 ============================================================= -->
 <section class="hero">
-  <div class="hero__ring" aria-hidden="true"></div>
   <div class="hero__content">
     <p class="eyebrow">An investigation</p>
     <h1 class="hero__headline">The Changing<br>Live Experience</h1>
@@ -62,7 +59,7 @@
       attending a live UFC event has changed.
     </p>
     <p>
-      Whether it’s the quality of cards, ticket prices or the atmosphere of the fans, many fans and media members
+      Whether it’s the quality of cards, ticket prices or the atmosphere in the arena, many fans and media members
       agree that events in general are losing their magic.
     </p>
     <p>
@@ -88,12 +85,55 @@
 <!-- ============================================================
      CHAPTER — TICKET PRICES (intro)
 ============================================================= -->
-<section class="method">
-  <div class="method__card">
-    <p class="method__kicker">Ticket prices</p>
+<section class="lede">
+  <div class="lede__col">
+    <h2 class="outro__title">Ticket Prices</h2>
     <p>
-      Ticket prices are one of the most controversial topics amongst UFC event attendees with almost all fans who
-      have attended events in recent years commenting on the increase over time.
+      Ticket prices are a contentious subject amongst recent UFC event attendees. In recent years, the rise in ticket prices 
+      has been one of the most prevalent topics of conversation amongst fans, but have they actually been increasing
+      as much as people suggest? And if so, is this just a recent trend?<br><br>
+
+      To test this theory, I analysed ticket data across the past 20 years to see how much the average ticket price has
+      actually changed.<br><br>
+
+      Find out how the average ticket price was calculated <button type="button" class="inline-link" id="methodologyTrigger" aria-haspopup="dialog" aria-controls="methodologyModal">here</button>.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHART — ALL-VENUES TICKET PRICE (every event with publicly
+     available data, before the fairer 8-venue chart below)
+============================================================= -->
+<section class="chartFeature">
+  <div class="chartFeature__col">
+    <p class="stage__label">All available ticket data</p>
+    <h2 class="stage__title">Ticket prices, 2007–2026</h2>
+    <div class="axisChart" id="allVenuesChart" role="img" aria-label="Bar chart of average UFC ticket price in US dollars by year across every venue with publicly available data, adjusted for inflation, 2007 to 2026"></div>
+    <p class="chartFeature__caption">
+      When looking at average ticket price adjusted for inflation, there's been no dramatic rise in recent years, as 
+      people have suggested. In fact, bar a couple of standout years in 2021 and 2024, the average ticket price hasn't 
+      changed much at all since 2007. 
+    </p>
+  </div>
+</section>
+
+<section class="lede">
+  <div class="lede__col">
+    <h3>The problem with this data</h3>
+    <p>
+      The data used has several issues when it comes comparing average ticket prices between years. Firstly, not every 
+      event has publicly available data, meaning some years have far more events to draw from than others. Secondly, 
+      the type and size of arenas may have changed over the years, which affects both ticket price and attendance. 
+      Thirdly, the COVID-19 pandemic and the subsequent use of the Apex has changed what the "average" UFC arena show 
+      looks like nowadays meaning the average UFC event from 2007 could look substantially different to 2026.
+    </p>
+    <p>
+      A fairer way of comparing ticket price data is to only use venues that have been consistently used over the
+      past 20 years. Since 2007, there were eight arenas which had been used at least four times: Accor Arena,
+      Kaseya Center, Madison Square Garden, Prudential Center, Qudos Bank Arena, RAC Arena, T-Mobile Arena and The O2
+      Arena. When you look at the average ticket price from these venues since 2007, the picture looks a little
+      different.
     </p>
   </div>
 </section>
@@ -107,7 +147,6 @@
       <div class="stage__header">
         <p class="stage__label" id="ticketStageLabel">Step 1 of 3</p>
         <h2 class="stage__title" id="ticketStageTitle">Ticket prices, 2007–2026</h2>
-        <p class="stage__sub" id="ticketStageSub">Average UFC ticket price by year, adjusted for inflation (2007 $)</p>
       </div>
 
       <div class="axisChart" id="ticketChart" role="img" aria-label="Bar chart of average UFC ticket price in US dollars by year, adjusted for inflation, 2007 to 2026"></div>
@@ -122,17 +161,17 @@
   <div class="ticketstory__steps">
     <div class="step" data-step="0">
       <p class="step__num">01</p>
-      <p class="step__text">Here's the average UFC ticket price for every year from 2007 to 2026.</p>
+      <p class="step__text">Here's the average UFC ticket price of these eight arenas 2007 – 2026.<br><br>
+      
+      There's now a marked increase in average ticket price.</p>
     </div>
     <div class="step" data-step="1">
       <p class="step__num">02</p>
-      <p class="step__text">Group those years together and a clear pattern emerges: two distinct eras, split
-        right around 2016.</p>
+      <p class="step__text">Group those years together and there's a clear split around 2016.</p>
     </div>
     <div class="step" data-step="2">
       <p class="step__num">03</p>
-      <p class="step__text">The headline comparison: the 2016–2026 average is over double what fans were paying
-        in the 2007–2015 era.</p>
+      <p class="step__text">Fans are now paying over double the amount they used to between 2007 and 2015.</p>
     </div>
   </div>
 </section>
@@ -142,14 +181,14 @@
 ============================================================= -->
 <section class="lede">
   <div class="lede__col">
-    <p>Ticket prices were an area that all fans unanimously agreed was a problem:</p>
+    <p>The UK-based fans that I spoke to all agreed that ticket price was a significant issue.</p>
 
-    <div class="voxpop__grid">
+    <div class="voxpop__grid voxpop__grid--stack">
       <blockquote class="quoteCard">
         <p>Ticket price is a massive thing. I would say that’s probably the biggest thing actually… I’ve been
           watching the sport for over 10 years now but I wouldn’t even now, as a fan, I wouldn’t consider buying
           tickets</p>
-        <footer><strong>Robert Smith</strong>, MMA journalist covering the sport pitch-side</footer>
+        <footer><strong>Robert Smith</strong></footer>
       </blockquote>
 
       <blockquote class="quoteCard">
@@ -165,14 +204,14 @@
       </blockquote>
 
       <blockquote class="quoteCard">
-        <p>And then going to the other event, UFC London, Edwards versus Brady, it was almost just as much, but it
+        <p>Going to the other event, UFC London,  Edwards versus Brady, was almost just as much [as UFC 304], but it
           was a fight night instead of a numbered card. And I think that really just sums up to me that I think the
           prices are really not fair. They always seem to be increasing, even if it's just by a little margin.</p>
         <footer><strong>Charlie Oxtoby</strong></footer>
       </blockquote>
     </div>
 
-    <h3>Why have ticket prices increased then?</h3>
+    <h3>Why have ticket prices increased?</h3>
     <p>
       While the sport of MMA has grown significantly, it would be unfair to say that there are more stars in the
       UFC now than there were in the past. Prior to 2016, the UFC still had stars like Ronda Rousey, Georges St
@@ -184,10 +223,10 @@
       stardom that transcended the sport:
     </p>
 
-    <div class="voxpop__grid">
+    <div class="voxpop__grid voxpop__grid--stack">
       <blockquote class="quoteCard">
         <p>Maybe it has some impact to do with how in that era with Conor McGregor coming out and being one of the
-          biggest stars in MMA, and clearly the UFC must have thought that there was going to be even more stars
+          biggest stars in MMA. Clearly the UFC must have thought that there was going to be even more stars
           who were going to be just as big.</p>
         <footer><strong>Charlie Oxtoby</strong></footer>
       </blockquote>
@@ -227,14 +266,14 @@
 
     <div class="voxpop__grid">
       <blockquote class="quoteCard">
-        <p>[On whether ticket prices have affected event atmospheres] Yeah, do you know what, I do … It feels like
-          people, like at the most recent event in March 26, like, it just feels like people were just sort of
+        <p>Yeah, do you know what, I do [think ticket prices have affected the atmosphere]… It feels like
+          people, like at the most recent event in March 2026, like, it just feels like people were just sort of
           cheering to cheer.</p>
         <footer><strong>Emma Porter</strong></footer>
       </blockquote>
 
       <blockquote class="quoteCard">
-        <p>The UFC can't expect the fans to just show full support, full atmosphere, (20:55) full passion towards
+        <p>The UFC can't expect the fans to just show full support, full atmosphere, full passion towards
           the event, if they're having to pay so much money.</p>
         <footer><strong>Charlie Oxtoby</strong></footer>
       </blockquote>
@@ -242,11 +281,7 @@
 
     <p>There’s also an argument made that the pricing of tickets is changing the kinds of fans in attendance:</p>
 
-    <div class="voxpop__grid">
-      <blockquote class="quoteCard">
-        <p>I think fans are being priced out by these extortionate ticket prices.</p>
-        <footer><strong>Emma Porter</strong></footer>
-      </blockquote>
+    <div class="voxpop__grid voxpop__grid--stack">
 
       <blockquote class="quoteCard">
         <p>There just doesn't seem as much passion. And I think it is because the level of fanship or level of
@@ -270,8 +305,8 @@
   <div class="lede__col">
     <h2 class="outro__title">Weakening card quality</h2>
     <p>
-      The strength of cards has been one of the most prevalent complaints amongst UFC fans in recent years. Many
-      fans have complained that the UFC fails to adequately stack each UFC event with the quality of matchups it
+      The strength of cards has been one of the loudest complaints amongst UFC fans in recent years. Many
+      fans have claimed that the UFC fails to adequately stack each UFC event with the quality of matchups it
       deserves:
     </p>
 
@@ -334,7 +369,7 @@
       it’s impacting the quality of events;
     </p>
 
-    <div class="voxpop__grid">
+    <div class="voxpop__grid voxpop__grid--stack">
       <blockquote class="quoteCard">
         <p>I just think that ultimately, the UFC are, like you could say for a long time about the business, but I
           just think they are so interested in the profit side of things… And like I think sometimes as fans, like
@@ -362,6 +397,22 @@
 <footer class="footer">
   <p>Will McNamee</p>
 </footer>
+
+<!-- ============================================================
+     METHODOLOGY BREAKOUT (opened from the ticket-prices "here" link)
+============================================================= -->
+<div class="modalOverlay" id="methodologyModal" role="dialog" aria-modal="true" aria-labelledby="methodologyModalTitle" hidden>
+  <div class="modalBox">
+    <button type="button" class="modalBox__close" id="methodologyModalClose" aria-label="Close methodology">&times;</button>
+    <p class="modalBox__eyebrow">Methodology</p>
+    <h3 id="methodologyModalTitle" class="modalBox__title">How the average ticket price was calculated</h3>
+    <p class="modalBox__text">
+      To find a proxy for the average ticket price, I divided the live gate by the attendance for every UFC event that
+      had publicly available data. Each year's average ticket price was then adjusted for inflation against the
+      initial 2007 year marker.
+    </p>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
