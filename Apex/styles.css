@@ -243,12 +243,6 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
   box-shadow: 0 0 0 2px rgba(245,243,238,0.4);
 }
 
-.apexstory__note{
-  margin: 14px 0 0; font-size: 13px; color: var(--muted);
-  font-family: var(--font-mono); border-left: 2px solid var(--amber); padding-left: 10px;
-  min-height: 18px;
-}
-
 /* ============================================================
    APEX USAGE SCROLLYTELLING
 ============================================================= */

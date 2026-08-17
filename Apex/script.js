@@ -143,10 +143,10 @@ const APEX_SHARE_OF_VEGAS = { 2020: 91.30, 2021: 91.18, 2022: 84.00, 2023: 77.27
 const DEAL_TIMELINE = [
   { year: "2018", text: "ESPN signed a five-year deal to become the UFC's US pay-per-view and broadcast partner for $1.5 billion ($300 million per year). <br><br>This deal required the UFC to provide 30 Fight Nights per year." },
   { year: "2019", text: "ESPN and the UFC extend their deal by two years meaning it will now last until the end of 2025." },
-  { year: "2020", text: "The COVID-19 pandemic forces the UFC to host their events at the Apex." },
+  { year: "2020", text: "The COVID-19 pandemic prompts the UFC to start hosting their events at the Apex." },
   { year: "2020-2025", text: "The UFC continues to host a proportion of their annual events at the Apex." },
   { year: "2026", text: "Paramount+ becomes the new owner of the UFC’s US media rights for $7.7 billion across seven years ($1.1 billion per year)." },
-  { year: "2026", text: "Meta and the UFC sign a deal to rename the UFC Apex to the Meta Apex." },
+  { year: "2026", text: "Meta and the UFC sign a five-year deal to rename the UFC Apex to the Meta Apex." },
 ];
 
 // Champion nationality vs. events hosted in that country.
@@ -245,7 +245,6 @@ const apexChartEl = document.getElementById("apexChart");
 const apexStageLabel = document.getElementById("apexStageLabel");
 const apexStageTitle = document.getElementById("apexStageTitle");
 const apexStageSub = document.getElementById("apexStageSub");
-const apexNote = document.getElementById("apexNote");
 
 /* Picks a "nice" axis max + tick step for a given data max, so
    small-range charts (e.g. distinct cities, max ~19) get finer
@@ -336,7 +335,6 @@ async function initApexUsageChart(){
     apexStageLabel.textContent = stage.label;
     apexStageTitle.textContent = stage.title;
     apexStageSub.textContent = stage.sub;
-    apexNote.textContent = stage.note;
 
     apexChartEl.querySelectorAll(".barChart__col").forEach(col => {
       const year = Number(col.dataset.year);
@@ -404,7 +402,6 @@ async function initVegasChart(){
             <div class="miniChart__row">
             ${years.map((year,i)=>`
               <div class="miniChart__col">
-                <span class="miniChart__val">${totals[i]}</span>
                 <div class="miniChart__stack" style="height:0%" data-target="${(totals[i]/axisMax*100).toFixed(1)}">
                   <div class="miniChart__bar miniChart__bar--apex" data-i="${i}" style="height:${(apex[i]/totals[i]*100 || 0)}%"></div>
                   <div class="miniChart__bar miniChart__bar--nonapex" data-i="${i}" style="height:${(nonApex[i]/totals[i]*100 || 0)}%"></div>
@@ -446,7 +443,7 @@ async function initVegasChart(){
         });
       });
     } else {
-      const { values, barClass, title, unitLabel, showValue, yLabel } = config;
+      const { values, barClass, title, unitLabel, yLabel } = config;
       const { axisMax, ticks } = computeAxis(Math.max(...values));
       const sum = values.reduce((a, b) => a + b, 0);
 
@@ -464,7 +461,6 @@ async function initVegasChart(){
             <div class="miniChart__row">
             ${values.map((v,i)=>`
               <div class="miniChart__col">
-                ${showValue ? `<span class="miniChart__val">${v}</span>` : ""}
                 <div class="miniChart__bar ${barClass}" data-i="${i}" style="height:0%" data-target="${(v/axisMax*100).toFixed(1)}"></div>
               </div>`).join("")}
             </div>
@@ -496,9 +492,9 @@ async function initVegasChart(){
   }
 
   const VEGAS_CHARTS = {
-    total: () => buildBigChart({ type: "single", values: VEGAS_DATA.totalUSEvents, barClass: "miniChart__bar--total", title: "Total UFC events held in the US, per year", unitLabel: "US events", showValue: true, yLabel: "US events" }),
+    total: () => buildBigChart({ type: "single", values: VEGAS_DATA.totalUSEvents, barClass: "miniChart__bar--total", title: "Total UFC events held in the US, per year", unitLabel: "US events", yLabel: "US events" }),
     stacked: () => buildBigChart({ type: "stacked", apex: VEGAS_DATA.apexEvents, nonApex: VEGAS_DATA.nonApexEvents, title: "Apex vs non-Apex UFC events held in the US" }),
-    cities: () => buildBigChart({ type: "single", values: VEGAS_DATA.distinctCities, barClass: "miniChart__bar--cities", title: "Distinct US cities hosting a UFC card", unitLabel: "distinct cities", showValue: false, yLabel: "Distinct cities" }),
+    cities: () => buildBigChart({ type: "single", values: VEGAS_DATA.distinctCities, barClass: "miniChart__bar--cities", title: "Distinct US cities hosting a UFC card", unitLabel: "distinct cities", yLabel: "Distinct cities" }),
   };
 
   let currentVegasChart = null;
