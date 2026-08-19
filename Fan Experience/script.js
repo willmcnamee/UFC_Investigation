@@ -1,4 +1,30 @@
 /* ==============================================================
+   SCROLL REVEAL — generic fade/rise-in observer for ".reveal"
+   elements (static prose blocks, headings, quote cards, etc.).
+   Wrapped in its own IIFE so it can't collide with any of this
+   file's other top-level names (e.g. the ticketObserver below).
+   ============================================================== */
+(function () {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealEls = document.querySelectorAll(".reveal");
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    revealEls.forEach(el => el.classList.add("is-visible"));
+  } else {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+  }
+})();
+
+/* ==============================================================
    DATA NOTE
    ------------------------------------------------------------
    TICKET_PRICE_DATA is REAL, supplied 2026-08-14. "price" is the

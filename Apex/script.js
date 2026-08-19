@@ -1,4 +1,32 @@
 /* ==============================================================
+   SCROLL REVEAL — generic fade/rise-in on scroll for static prose
+   sections (lede, outros, bridge, vox pop). Wrapped in its own
+   IIFE so it can't collide with this file's top-level names.
+   Does NOT touch anything already driven by the scrollytelling
+   observers below (apexObserver, vegasObserver, dealTrack scroll
+   handler, natObserver) — those elements never get a .reveal class.
+   =============================================================== */
+(function () {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealEls = document.querySelectorAll(".reveal");
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    revealEls.forEach(el => el.classList.add("is-visible"));
+  } else {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+  }
+})();
+
+/* ==============================================================
    DATA NOTE
    ------------------------------------------------------------
    APEX_USAGE is loaded at runtime from "Apex data.csv" (sitting

@@ -1,4 +1,31 @@
 /* ==============================================================
+   SCROLL REVEAL — generic fade/rise-in on scroll, wrapped in its
+   own IIFE so its locals (prefersReducedMotion, revealEls,
+   revealObserver) can never collide with this file's other
+   top-level scroll/observer logic (e.g. prefersReducedMotionHM,
+   ratioObserver).
+   =============================================================== */
+(function () {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealEls = document.querySelectorAll(".reveal");
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    revealEls.forEach(el => el.classList.add("is-visible"));
+  } else {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+  }
+})();
+
+/* ==============================================================
    DATA NOTE
    ------------------------------------------------------------
    The controversial-title-reigns heatmap is now built entirely at

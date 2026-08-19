@@ -1,4 +1,37 @@
 /* ==============================================================
+   SCROLL REVEAL
+   ------------------------------------------------------------
+   Generic fade/rise-in utility for static prose sections (see
+   .reveal / .reveal-group in styles.css). Wrapped in its own IIFE
+   so it doesn't collide with the top-level `prefersReducedMotion`
+   declared further down (in the HORIZONTAL SCROLLYTELLING block),
+   and placed here at the very top of the file — rather than after
+   that block — because the HORIZONTAL SCROLLYTELLING code currently
+   throws (its #horiz target is commented out in index.html, see the
+   NB note near that block), which halts every subsequent top-level
+   statement in this file for the rest of the load.
+   =============================================================== */
+(function () {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealEls = document.querySelectorAll(".reveal");
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    revealEls.forEach(el => el.classList.add("is-visible"));
+  } else {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+  }
+})();
+
+/* ==============================================================
    PLACEHOLDER DATA
    ------------------------------------------------------------
    Every value below is illustrative only. Replace with verified
