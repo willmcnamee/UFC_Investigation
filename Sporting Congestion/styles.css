@@ -133,7 +133,7 @@ code{ font-family: var(--font-mono); font-size: 0.92em; }
 .method{ min-height: 92vh; padding: 14vh clamp(20px, 6vw, 80px); display:flex; justify-content:center; align-items:center; }
 .method__list{ margin: 0 0 16px; padding-left: 20px; }
 .method__list li{ margin-bottom: 10px; font-size: 18px; line-height: 1.6; color: var(--ink-dim); }
-.method__note{ font-family: var(--font-mono); font-size: 13px; color: var(--muted); margin: 0 !important; }
+.method__note{ font-size: 13px; color: var(--muted); margin: 0 !important; }
 
 .statRow{ display:flex; gap: 16px; flex-wrap: wrap; margin-top: 20px; }
 .statRow__card{
@@ -176,6 +176,9 @@ code{ font-family: var(--font-mono); font-size: 0.92em; }
 }
 .ratioRow{ display:flex; align-items:center; gap: 14px; }
 .ratioRow__label{ width: 46px; flex: 0 0 auto; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+/* marks a partial-year (e.g. YTD 2026) row label — sized/raised
+   like a real asterisk footnote mark, not full text size */
+.ratioRow__label sup{ font-size: 0.7em; line-height: 0; vertical-align: super; }
 .ratioRow__track{
   position: relative; flex: 1 1 auto; height: 22px; border-radius: 3px;
   overflow: hidden; background: var(--surface-2); border: 1px solid var(--line);
@@ -193,6 +196,10 @@ code{ font-family: var(--font-mono); font-size: 0.92em; }
 .step__num{ font-family: var(--font-mono); font-size: 12px; color: var(--amber); margin: 0 0 8px; }
 .step__text{ font-size: 19px; line-height: 1.5; color: var(--ink-dim); margin:0; }
 .step.is-active .step__text{ color: var(--ink); }
+/* footnote-style aside within a step (e.g. the "2026 values
+   accurate at time of publishing" asterisk note) — smaller than
+   the surrounding step copy */
+.step__footnote{ font-size: 14px; }
 
 @media (max-width: 880px){
   .ratiostory{ flex-direction: column; }

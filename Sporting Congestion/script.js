@@ -310,7 +310,7 @@ const ratioStageSub = document.getElementById("ratioStageSub");
 function buildRatioRows(){
   ratioChartEl.innerHTML = RATIO_DATA.map(row => `
     <div class="ratioRow" data-year="${row.year}">
-      <span class="ratioRow__label">${row.year}</span>
+      <span class="ratioRow__label">${row.year}${row.year === 2026 ? "<sup>*</sup>" : ""}</span>
       <div class="ratioRow__track">
         <span class="ratioRow__seg ratioRow__seg--active" data-value="${row.active}" style="width:0%"></span>
         <span class="ratioRow__seg ratioRow__seg--interim" data-value="${row.interim}" style="width:0%"></span>

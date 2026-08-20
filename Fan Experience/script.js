@@ -62,40 +62,6 @@ const TICKET_PRICE_DATA = [
   { year: 2026, price: 237.94, nominal: 384.5723435 },
 ];
 
-/* ==============================================================
-   ALL-VENUES DATA NOTE
-   ------------------------------------------------------------
-   ALL_VENUES_TICKET_PRICE_DATA is REAL, supplied 2026-08-17. Unlike
-   TICKET_PRICE_DATA (which is limited to the eight venues used at
-   least four times since 2007, for a fairer year-on-year
-   comparison), this covers every UFC event with publicly available
-   gate/attendance data, across all venues. "price" is already
-   adjusted for inflation to 2007 $ terms, matching the other
-   dataset; no unadjusted "nominal" figure was supplied for this set.
-   =============================================================== */
-const ALL_VENUES_TICKET_PRICE_DATA = [
-  { year: 2007, price: 200.72 },
-  { year: 2008, price: 191.41 },
-  { year: 2009, price: 158.17 },
-  { year: 2010, price: 154.18 },
-  { year: 2011, price: 149.46 },
-  { year: 2012, price: 134.34 },
-  { year: 2013, price: 155.15 },
-  { year: 2014, price: 105.93 },
-  { year: 2015, price: 148.98 },
-  { year: 2016, price: 150.73 },
-  { year: 2017, price: 97.98 },
-  { year: 2018, price: 122.2 },
-  { year: 2019, price: 107.36 },
-  { year: 2020, price: 165.35 },
-  { year: 2021, price: 278.52 },
-  { year: 2022, price: 189.52 },
-  { year: 2023, price: 205.69 },
-  { year: 2024, price: 289.56 },
-  { year: 2025, price: 216.58 },
-  { year: 2026, price: 208.9 },
-];
-
 function ticketClusterStats(){
   const cluster1 = TICKET_PRICE_DATA.filter(d => d.year <= 2015);
   const cluster2 = TICKET_PRICE_DATA.filter(d => d.year >= 2016);
@@ -186,66 +152,6 @@ function computeAxis(max){
 }
 
 /* ==============================================================
-   ALL-VENUES TICKET PRICE CHART
-   ------------------------------------------------------------
-   Standalone chart, structurally a carbon copy of step 1 of the
-   scrollytelling chart below (plain bars, no clustering, no mean
-   lines) but plotting ALL_VENUES_TICKET_PRICE_DATA instead of the
-   fairer 8-venue TICKET_PRICE_DATA.
-   =============================================================== */
-const allVenuesChartEl = document.getElementById("allVenuesChart");
-const { axisMax: allVenuesAxisMax, ticks: allVenuesTicks } = computeAxis(Math.max(...ALL_VENUES_TICKET_PRICE_DATA.map(d => d.price)));
-
-function buildAllVenuesChart(){
-  allVenuesChartEl.innerHTML = `
-    <div class="axisChart__wrap">
-      <div class="axisChart__ylabel">Average ticket price ($)</div>
-      <div class="axisChart__body">
-        <div class="axisChart__inner">
-          <div class="axisChart__yaxis">
-            ${allVenuesTicks.map(t => `<span class="axisChart__tick" style="bottom:${(t / allVenuesAxisMax * 100).toFixed(2)}%">${t}</span>`).join("")}
-          </div>
-          <div class="axisChart__plot">
-            <div class="axisChart__grid">
-              ${allVenuesTicks.map(t => `<div class="axisChart__gridline${t === 0 ? " axisChart__gridline--zero" : ""}" style="bottom:${(t / allVenuesAxisMax * 100).toFixed(2)}%"></div>`).join("")}
-            </div>
-            <div class="barChart__row">
-              ${ALL_VENUES_TICKET_PRICE_DATA.map(d => `
-                <div class="barChart__col" data-year="${d.year}">
-                  <div class="barChart__bar" style="height:0%" data-target="${(d.price / allVenuesAxisMax * 100).toFixed(1)}"></div>
-                </div>`).join("")}
-            </div>
-          </div>
-        </div>
-        <div class="axisChart__xaxis">
-          <div class="axisChart__yaxis-gap"></div>
-          <div class="axisChart__xlabels">
-            ${ALL_VENUES_TICKET_PRICE_DATA.map(d => `<span class="barChart__label">${d.year}</span>`).join("")}
-          </div>
-        </div>
-        <div class="axisChart__xlabel">Year</div>
-      </div>
-    </div>
-  `;
-  requestAnimationFrame(() => {
-    allVenuesChartEl.querySelectorAll(".barChart__bar").forEach(bar => {
-      bar.style.height = bar.dataset.target + "%";
-    });
-  });
-
-  allVenuesChartEl.querySelectorAll(".barChart__col").forEach(col => {
-    const d = ALL_VENUES_TICKET_PRICE_DATA.find(row => String(row.year) === col.dataset.year);
-    attachBarTooltip(col.querySelector(".barChart__bar"), {
-      title: String(d.year),
-      rows: [
-        { value: `$${d.price.toFixed(0)}`, label: "avg price, 2007 $ (inflation-adjusted)" },
-      ],
-    });
-  });
-}
-buildAllVenuesChart();
-
-/* ==============================================================
    TICKET PRICE SCROLLYTELLING
    ------------------------------------------------------------
    The chart itself never swaps out — it stays on screen for all
@@ -288,7 +194,7 @@ function buildTicketBars(){
         <div class="axisChart__xaxis">
           <div class="axisChart__yaxis-gap"></div>
           <div class="axisChart__xlabels">
-            ${TICKET_PRICE_DATA.map(d => `<span class="barChart__label">${d.year}</span>`).join("")}
+            ${TICKET_PRICE_DATA.map(d => `<span class="barChart__label">${d.year}${d.year === 2026 ? "<sup>*</sup>" : ""}</span>`).join("")}
           </div>
         </div>
         <div class="axisChart__xlabel">Year</div>

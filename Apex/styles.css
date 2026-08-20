@@ -114,6 +114,34 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 @keyframes bob{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(6px); } }
 
 /* ============================================================
+   PHOTO CREDIT — overlay
+   Same muted font-mono treatment as .photoCredit / figcaption,
+   pinned to a bottom corner of the hero for the background-image
+   hero, which has no <img> to caption underneath. Sits opposite
+   .scroll-cue so the two never collide. Nudged in slightly from
+   the right edge (a small fraction of the original 140px pull-in,
+   which sat too far from the corner) to clear the brightest edge
+   of the red support beam in Apex.png without drifting far from
+   where it originally sat.
+============================================================= */
+.hero__credit{
+  position: absolute;
+  right: calc(clamp(20px, 6vw, 80px) + 14px);
+  bottom: 20px;
+  max-width: 46%;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  z-index: 2;
+}
+
+@media (max-width: 520px){
+  .hero__credit{ bottom: 14px; max-width: 60%; }
+}
+
+/* ============================================================
    LEDE
 ============================================================= */
 .lede{ padding: 14vh clamp(20px, 6vw, 80px); display:flex; justify-content:center; }
@@ -272,6 +300,10 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 .step__num{ font-family: var(--font-mono); font-size: 12px; color: var(--amber); margin: 0 0 8px; }
 .step__text{ font-size: 19px; line-height: 1.5; color: var(--ink-dim); margin:0; }
 .step.is-active .step__text{ color: var(--ink); }
+/* footnote-style aside within a step (e.g. the "2026 values
+   accurate at time of publishing" asterisk note) — smaller than
+   the surrounding step copy */
+.step__footnote{ font-size: 14px; }
 
 @media (max-width: 880px){
   .apexstory, .vegasstory{ flex-direction: column; }
@@ -323,6 +355,9 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 .miniChart__bar--cities{ background: var(--paleblue); }
 .miniChart__val{ font-family: var(--font-mono); font-size: 10px; color: var(--ink-dim); }
 .miniChart__label{ font-family: var(--font-mono); font-size: 9.5px; color: var(--muted); }
+/* marks a partial-year (e.g. YTD 2026) x-axis label — sized/raised
+   like a real asterisk footnote mark, not full text size */
+.miniChart__label sup{ font-size: 0.7em; line-height: 0; vertical-align: super; }
 
 /* Single big chart area that swaps content per scrollytelling step,
    sized to the combined footprint the three stacked mini charts

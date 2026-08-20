@@ -471,7 +471,7 @@ async function initVegasChart(){
         });
       });
     } else {
-      const { values, barClass, title, unitLabel, yLabel } = config;
+      const { values, barClass, title, unitLabel, yLabel, markPartialYear } = config;
       const { axisMax, ticks } = computeAxis(Math.max(...values));
       const sum = values.reduce((a, b) => a + b, 0);
 
@@ -494,7 +494,7 @@ async function initVegasChart(){
             </div>
           </div>
           <div class="axisChart__xaxis miniChart__row">
-            ${years.map(year => `<div class="axisChart__xaxis-col"><span class="miniChart__label">${year}</span></div>`).join("")}
+            ${years.map(year => `<div class="axisChart__xaxis-col"><span class="miniChart__label">${year}${markPartialYear && year === 2026 ? "<sup>*</sup>" : ""}</span></div>`).join("")}
           </div>
         </div>
         <p class="axisChart__xlabel">Year</p>
@@ -522,7 +522,7 @@ async function initVegasChart(){
   const VEGAS_CHARTS = {
     total: () => buildBigChart({ type: "single", values: VEGAS_DATA.totalUSEvents, barClass: "miniChart__bar--total", title: "Total UFC events held in the US, per year", unitLabel: "US events", yLabel: "US events" }),
     stacked: () => buildBigChart({ type: "stacked", apex: VEGAS_DATA.apexEvents, nonApex: VEGAS_DATA.nonApexEvents, title: "Apex vs non-Apex UFC events held in the US" }),
-    cities: () => buildBigChart({ type: "single", values: VEGAS_DATA.distinctCities, barClass: "miniChart__bar--cities", title: "Distinct US cities hosting a UFC card", unitLabel: "distinct cities", yLabel: "Distinct cities" }),
+    cities: () => buildBigChart({ type: "single", values: VEGAS_DATA.distinctCities, barClass: "miniChart__bar--cities", title: "Distinct US cities hosting a UFC card", unitLabel: "distinct cities", yLabel: "Distinct cities", markPartialYear: true }),
   };
 
   let currentVegasChart = null;

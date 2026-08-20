@@ -664,6 +664,39 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
   margin-top: 30px !important;
 }
 
+/* ============================================================
+   CONSOLIDATED PHOTO CREDITS LIST
+   Same muted font-mono treatment as .photoCredit (matches the
+   Apex piece's .lede__figure figcaption) — run together on one
+   line (wrapping only if the viewport forces it), for cases where
+   captioning each thumbnail individually would be visually noisy
+   (e.g. the hero collage, credited as a set).
+============================================================= */
+.creditsList{
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+.creditsList__title{ margin: 0 0 6px; }
+.creditsList__items{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+.creditsList__items li + li::before{
+  content: " · ";
+  color: var(--muted);
+}
+/* wrapper for placing .creditsList outside a padded column (e.g.
+   directly below the full-bleed collage) */
+.collageCredits{
+  padding: 14px clamp(20px, 6vw, 80px) 20px;
+}
+
 .footer{
   text-align:center;
   padding: 30px;
@@ -687,7 +720,27 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
   object-fit: cover;
   object-position: top;
   border-radius: 4px;
-  margin: 0 auto 28px;
+  margin: 0 auto 10px;
+}
+
+/* ============================================================
+   PHOTO CREDIT — inline caption
+   Small credit line sitting directly beneath a standalone image,
+   muted font-mono treatment matching .outro__sources. Carries the
+   28px gap .fighterImage used to have before the prose column, so
+   captioned and uncaptioned images keep the same rhythm. !important
+   on size/color/margin because it's a <p> inside .lede, and .lede p
+   (below) otherwise outranks a single class selector — same reason
+   .lede__tag and .outro__sources use !important.
+============================================================= */
+.photoCredit{
+  display:block;
+  text-align:center;
+  font-family: var(--font-mono);
+  font-size: 12px !important;
+  color: var(--muted) !important;
+  letter-spacing: 0.02em;
+  margin: 0 auto 28px !important;
 }
 
 /* ============================================================

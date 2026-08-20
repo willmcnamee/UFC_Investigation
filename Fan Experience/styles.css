@@ -107,6 +107,30 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 @keyframes bob{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(6px); } }
 
 /* ============================================================
+   PHOTO CREDIT — overlay
+   Same muted font-mono treatment used for inline photo captions
+   elsewhere in the series, pinned to a bottom corner of the hero
+   for the background-image hero, which has no <img> to caption
+   underneath. Sits opposite .scroll-cue so the two never collide.
+============================================================= */
+.hero__credit{
+  position: absolute;
+  right: clamp(20px, 6vw, 80px);
+  bottom: 20px;
+  max-width: 46%;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  z-index: 2;
+}
+
+@media (max-width: 520px){
+  .hero__credit{ bottom: 14px; max-width: 60%; }
+}
+
+/* ============================================================
    LEDE — also reused as the generic "chapter" prose column
 ============================================================= */
 .lede{ padding: 14vh clamp(20px, 6vw, 80px); display:flex; justify-content:center; }
@@ -219,6 +243,9 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
   transition: height 0.7s cubic-bezier(.22,.9,.32,1), background 0.3s ease, filter 0.15s ease, box-shadow 0.15s ease;
 }
 .barChart__label{ font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+/* marks a partial-year (e.g. YTD 2026) x-axis label — sized/raised
+   like a real asterisk footnote mark, not full text size */
+.barChart__label sup{ font-size: 0.7em; line-height: 0; vertical-align: super; }
 
 .barChart__bar.is-hovered{
   filter: brightness(1.2);
@@ -271,16 +298,6 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
   .ticketstory__steps{ max-width: none; }
   .step{ min-height: 0; padding: 20px 0; opacity:1; }
 }
-
-/* ============================================================
-   CHART FEATURE — standalone chart (no scrollytelling steps),
-   e.g. the "all venues" ticket-price chart ahead of the fairer
-   8-venue scrollytelling version
-============================================================= */
-.chartFeature{ padding: 8vh clamp(20px,6vw,80px) 2vh; display:flex; justify-content:center; }
-.chartFeature__col{ width:100%; max-width: 820px; }
-.chartFeature__col .stage__title{ margin-bottom: 20px; }
-.chartFeature__caption{ color: var(--ink-dim); font-size: 17px; line-height: 1.55; margin: 22px 0 0; }
 
 /* ============================================================
    FAN QUOTES — .quoteCard / voxpop grid pattern (Apex Events)
@@ -357,6 +374,10 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 }
 .modalBox__title{ font-size: 21px; margin: 0 0 14px; padding-right: 20px; }
 .modalBox__text{ color: var(--ink-dim); font-size: 15px; line-height: 1.6; margin: 0; }
+.modalBox__text p{ margin: 0 0 14px; }
+.modalBox__text ul{ margin: 0 0 14px; padding-left: 20px; }
+.modalBox__text li{ margin: 0 0 4px; }
+.modalBox__text p:last-child, .modalBox__text li:last-child{ margin-bottom: 0; }
 
 @media (max-width: 520px){
   .modalBox{ padding: 26px 22px 24px; }

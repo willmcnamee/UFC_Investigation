@@ -30,7 +30,6 @@
 ============================================================= -->
 <section class="hero">
   <div class="hero__content">
-    <p class="eyebrow">An investigation</p>
     <h1 class="hero__headline">The Changing<br>Live Experience</h1>
     <p class="hero__deck">
       Ticket prices, atmosphere and the quality of the cards themselves — long-time fans say the live UFC
@@ -47,6 +46,7 @@
     <span>Scroll to begin</span>
     <svg width="14" height="22" viewBox="0 0 14 22" fill="none"><path d="M7 1v20M1 15l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
+  <p class="hero__credit">Image by Chris Lee via Getty Images</p>
 </section>
 
 <!-- ============================================================
@@ -64,15 +64,15 @@
     </p>
     <p>
       That isn’t to say that all UFC events are declining – milestone events like the UFC White House Card, UFC 300
-      and the Sphere card show that when the UFC pulls out all the stops, they can make the sport of MMA a spectacle
-      unlike any other.
+      and the Sphere card show that when the UFC pulls out all the stops, they can still turn MMA into a major 
+      spectacle.
     </p>
     <p>
-      But fans who have been attending UFC events over a prolonged period of time have noticed a drop in the
+      But some fans who have been attending UFC events over a prolonged period of time have noticed a drop in the
       average experience.
     </p>
     <p>
-      As part of this investigation, I spoke to four UFC fans and asked them what they believe are the biggest
+      I spoke to four UFC fans and asked them what they believe are the biggest
       changes to the live UFC experience in recent years.
     </p>
     <p>
@@ -97,47 +97,6 @@
       actually changed.<br><br>
 
       Find out how the average ticket price was calculated <button type="button" class="inline-link" id="methodologyTrigger" aria-haspopup="dialog" aria-controls="methodologyModal">here</button>.
-    </p>
-  </div>
-</section>
-
-<!-- ============================================================
-     CHART — ALL-VENUES TICKET PRICE (every event with publicly
-     available data, before the fairer 8-venue chart below)
-============================================================= -->
-<section class="chartFeature">
-  <div class="chartFeature__col">
-    <p class="stage__label">All available ticket data</p>
-    <h2 class="stage__title">Ticket prices, 2007–2026</h2>
-    <div class="axisChart" id="allVenuesChart" role="img" aria-label="Bar chart of average UFC ticket price in US dollars by year across every venue with publicly available data, adjusted for inflation, 2007 to 2026"></div>
-    <p class="chartFeature__caption">
-      When looking at average ticket price adjusted for inflation, there's been no dramatic rise in recent years, as
-      people have suggested. In fact, bar a couple of standout years in 2021 and 2024, the average ticket price hasn't
-      changed much at all since 2007.
-    </p>
-  </div>
-</section>
-
-<section class="lede">
-  <div class="lede__col reveal">
-    <h3>The problem with this data</h3>
-    <p>
-      The data used has several issues when it comes comparing average ticket prices between years.<br><br>
-
-      Firstly, not every event has publicly available data, meaning some years have far more events to draw from than
-      others.<br><br>
-      Secondly, the type and size of arenas may have changed over the years as the UFC has grown in popularity,
-      which affects both ticket price and attendance.<br><br>
-
-      Thirdly, the COVID-19 pandemic and the subsequent use of the Apex has changed what the 'average' UFC arena show
-      looks like nowadays meaning Fight Nights from 2007 could look substantially different to those in 2026.
-    </p>
-    <p>
-      A fairer way of comparing ticket price data is to only consider venues that have been consistently used over the
-      past 20 years. Since 2007, there have been eight arenas that have hosted at least four events: Accor Arena,
-      Kaseya Center, Madison Square Garden, Prudential Center, Qudos Bank Arena, RAC Arena, T-Mobile Arena and The O2
-      Arena. When you look at the average ticket price from these venues since 2007, the picture looks a little
-      different.
     </p>
   </div>
 </section>
@@ -409,11 +368,28 @@
     <button type="button" class="modalBox__close" id="methodologyModalClose" aria-label="Close methodology">&times;</button>
     <p class="modalBox__eyebrow">Methodology</p>
     <h3 id="methodologyModalTitle" class="modalBox__title">How the average ticket price was calculated</h3>
-    <p class="modalBox__text">
-      To find a proxy for the average ticket price, I divided the live gate by the attendance for every UFC event that
-      had publicly available data. Each year's average ticket price was then adjusted for inflation against the
-      initial 2007 year marker.
-    </p>
+    <div class="modalBox__text">
+      <p>
+        To find a proxy for the average ticket price, I divided the live gate by the attendance for every UFC event that
+        had publicly available data. Each year's average ticket price was then adjusted for inflation against the
+        initial 2007 year marker.
+      </p>
+      <p>
+        To account for variation in venue types or event status over time, I solely used venues that have been used
+        across multiple years in this time frame. There were eight venues in total that met this criteria:
+      </p>
+      <ul>
+        <li>Accor Arena</li>
+        <li>Kaseya Center</li>
+        <li>Madison Square Garden</li>
+        <li>Prudential Center</li>
+        <li>Qudos Bank Arena</li>
+        <li>RAC Arena</li>
+        <li>T-Mobile Arena</li>
+        <li>The O2 Arena</li>
+      </ul>
+      <p>* 2026 averages have been calculated to date.</p>
+    </div>
   </div>
 </div>
 
