@@ -89,7 +89,7 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
   padding: 8vh clamp(20px, 6vw, 80px); overflow: hidden; isolation: isolate;
   background:
     linear-gradient(180deg, rgba(18,21,28,0.55) 0%, rgba(18,21,28,0.72) 55%, rgba(18,21,28,0.92) 100%),
-    url("Images/UFC%20Arena.png") center 30% / cover no-repeat;
+    url("Images/UFC%20Arena.jpg") center 30% / cover no-repeat;
 }
 .eyebrow{ font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin: 0 0 18px; }
 .hero__headline{ font-size: clamp(48px, 9vw, 118px); line-height: 0.94; font-weight: 700; max-width: 900px; margin-left: auto; margin-right: auto; }
@@ -127,7 +127,7 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 }
 
 @media (max-width: 520px){
-  .hero__credit{ bottom: 14px; max-width: 60%; }
+  .hero__credit{ bottom: 14px; max-width: 40%; }
 }
 
 /* ============================================================

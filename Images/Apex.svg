@@ -1,0 +1,327 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="ceiling" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#08080c"/>
+      <stop offset="100%" stop-color="#111118"/>
+    </linearGradient>
+
+    <linearGradient id="wallBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#16181f"/>
+      <stop offset="100%" stop-color="#101116"/>
+    </linearGradient>
+
+    <linearGradient id="blueWash" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#6aa0d8" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="#6aa0d8" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="redWash" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0%"   stop-color="#c1392b" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#c1392b" stop-opacity="0"/>
+    </linearGradient>
+
+    <radialGradient id="matGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#efe6cc" stop-opacity="1"/>
+      <stop offset="70%" stop-color="#cdbf9c" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#8a7f66" stop-opacity="1"/>
+    </radialGradient>
+
+    <radialGradient id="canopyGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#fff2d2" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#fff2d2" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="redSpot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#e8493a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#e8493a" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="whiteSpot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"  stop-color="#fff6df" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#fff6df" stop-opacity="0"/>
+    </linearGradient>
+
+    <radialGradient id="vignette" cx="50%" cy="42%" r="75%">
+      <stop offset="0%"   stop-color="#050408" stop-opacity="0"/>
+      <stop offset="70%"  stop-color="#050408" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#050408" stop-opacity="0.62"/>
+    </radialGradient>
+
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="softer" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="n"/>
+      <feColorMatrix in="n" type="matrix"
+        values="0 0 0 0 1
+                0 0 0 0 1
+                0 0 0 0 1
+                0 0 0 0.045 0"/>
+    </filter>
+  </defs>
+
+  <!-- ============ CEILING ============ -->
+  <rect x="0" y="0" width="1600" height="330" fill="url(#ceiling)"/>
+
+  <!-- steel roof deck lines, receding -->
+  <g stroke="#1c1e26" stroke-width="2" opacity="0.6">
+    <line x1="0" y1="40"  x2="1600" y2="20"/>
+    <line x1="0" y1="90"  x2="1600" y2="66"/>
+    <line x1="0" y1="140" x2="1600" y2="112"/>
+    <line x1="0" y1="190" x2="1600" y2="158"/>
+  </g>
+
+  <!-- ============ BACK WALL (curved, suggested via a wide arc) ============ -->
+  <path d="M -40,300 Q 800,190 1640,300 L 1640,560 Q 800,660 -40,560 Z" fill="url(#wallBase)"/>
+
+  <!-- vertical wall panels -->
+  <g opacity="0.5">
+    <rect x="40"  y="260" width="46" height="290" fill="#262a33"/>
+    <rect x="110" y="250" width="46" height="300" fill="#20232b"/>
+    <rect x="180" y="242" width="46" height="308" fill="#262a33"/>
+    <rect x="250" y="236" width="46" height="312" fill="#20232b"/>
+    <rect x="320" y="230" width="46" height="316" fill="#262a33"/>
+    <rect x="1234" y="230" width="46" height="316" fill="#262a33"/>
+    <rect x="1304" y="236" width="46" height="312" fill="#20232b"/>
+    <rect x="1374" y="242" width="46" height="308" fill="#262a33"/>
+    <rect x="1444" y="250" width="46" height="300" fill="#20232b"/>
+    <rect x="1514" y="260" width="46" height="290" fill="#262a33"/>
+  </g>
+
+  <!-- colour wash from stage lighting -->
+  <rect x="0" y="220" width="820" height="360" fill="url(#blueWash)"/>
+  <rect x="780" y="220" width="820" height="360" fill="url(#redWash)"/>
+
+  <!-- single blank monitor, off-centre, no branding -->
+  <g transform="translate(1120,300)">
+    <rect x="0" y="0" width="150" height="86" rx="4" fill="#0c0d12" stroke="#2a2d36" stroke-width="3"/>
+    <rect x="8" y="8" width="134" height="70" rx="2" fill="#131722"/>
+    <rect x="8" y="8" width="134" height="70" rx="2" fill="#4a5a78" opacity="0.12"/>
+  </g>
+
+  <!-- production crane, entering from upper right -->
+  <g stroke="#3a3e48" stroke-width="5" fill="none" opacity="0.85">
+    <line x1="1600" y1="160" x2="1240" y2="330"/>
+    <line x1="1600" y1="176" x2="1244" y2="344"/>
+  </g>
+  <g transform="translate(1240,330) rotate(24)">
+    <rect x="-16" y="-14" width="46" height="30" rx="4" fill="#2a2d34"/>
+    <circle cx="30" cy="1" r="9" fill="#161820"/>
+    <circle cx="30" cy="1" r="4" fill="#3a3f4a"/>
+  </g>
+
+  <!-- ============ RIG / TRUSS OVER THE CAGE ============ -->
+  <g stroke="#2c2f37" stroke-width="2" opacity="0.8">
+    <line x1="560" y1="0" x2="560" y2="150"/>
+    <line x1="700" y1="0" x2="700" y2="150"/>
+    <line x1="900" y1="0" x2="900" y2="150"/>
+    <line x1="1040" y1="0" x2="1040" y2="150"/>
+  </g>
+  <g stroke="#3d4149" stroke-width="3" fill="none">
+    <line x1="520" y1="150" x2="520" y2="196"/>
+    <line x1="1080" y1="150" x2="1080" y2="196"/>
+    <line x1="520" y1="150" x2="1080" y2="150"/>
+    <line x1="520" y1="196" x2="1080" y2="196"/>
+    <line x1="520" y1="150" x2="560" y2="196"/>
+    <line x1="600" y1="150" x2="560" y2="196"/>
+    <line x1="600" y1="150" x2="640" y2="196"/>
+    <line x1="680" y1="150" x2="640" y2="196"/>
+    <line x1="680" y1="150" x2="720" y2="196"/>
+    <line x1="760" y1="150" x2="720" y2="196"/>
+    <line x1="760" y1="150" x2="800" y2="196"/>
+    <line x1="840" y1="150" x2="800" y2="196"/>
+    <line x1="840" y1="150" x2="880" y2="196"/>
+    <line x1="920" y1="150" x2="880" y2="196"/>
+    <line x1="920" y1="150" x2="960" y2="196"/>
+    <line x1="1000" y1="150" x2="960" y2="196"/>
+    <line x1="1000" y1="150" x2="1040" y2="196"/>
+    <line x1="1080" y1="150" x2="1040" y2="196"/>
+  </g>
+
+  <!-- hanging spotlights: mostly white/amber, a few red accents -->
+  <g>
+    <circle cx="540" cy="205" r="9" fill="#e8493a"/>
+    <circle cx="540" cy="205" r="20" fill="#e8493a" opacity="0.35" filter="url(#soft)"/>
+    <polygon points="540,214 494,330 586,330" fill="url(#redSpot)" opacity="0.55"/>
+
+    <circle cx="620" cy="205" r="9" fill="#fff6df"/>
+    <polygon points="620,214 578,320 662,320" fill="url(#whiteSpot)" opacity="0.5"/>
+
+    <circle cx="700" cy="205" r="9" fill="#fff6df"/>
+    <polygon points="700,214 656,320 744,320" fill="url(#whiteSpot)" opacity="0.5"/>
+
+    <circle cx="780" cy="205" r="9" fill="#e8493a"/>
+    <circle cx="780" cy="205" r="20" fill="#e8493a" opacity="0.35" filter="url(#soft)"/>
+    <polygon points="780,214 734,330 826,330" fill="url(#redSpot)" opacity="0.55"/>
+
+    <circle cx="860" cy="205" r="9" fill="#fff6df"/>
+    <polygon points="860,214 816,320 904,320" fill="url(#whiteSpot)" opacity="0.5"/>
+
+    <circle cx="940" cy="205" r="9" fill="#fff6df"/>
+    <polygon points="940,214 896,320 984,320" fill="url(#whiteSpot)" opacity="0.5"/>
+
+    <circle cx="1020" cy="205" r="9" fill="#e8493a"/>
+    <circle cx="1020" cy="205" r="20" fill="#e8493a" opacity="0.35" filter="url(#soft)"/>
+    <polygon points="1020,214 974,330 1066,330" fill="url(#redSpot)" opacity="0.55"/>
+
+    <circle cx="1064" cy="205" r="9" fill="#fff6df"/>
+  </g>
+
+  <!-- tight warm haze directly around the truss lights -->
+  <ellipse cx="800" cy="230" rx="340" ry="90" fill="url(#canopyGlow)" opacity="0.4" filter="url(#soft)"/>
+
+  <!-- ============ FLOOR ============ -->
+  <rect x="0" y="560" width="1600" height="340" fill="#111219"/>
+  <ellipse cx="800" cy="640" rx="760" ry="120" fill="#171821" opacity="0.7"/>
+
+  <!-- ============ SEATING, receding rows around the cage ============ -->
+  <g id="seatingFar" opacity="0.85" fill="#1b1e27">
+    <!-- left arc -->
+    <rect x="330" y="470" width="20" height="14" rx="2"/>
+    <rect x="358" y="466" width="20" height="14" rx="2"/>
+    <rect x="386" y="464" width="20" height="14" rx="2"/>
+    <rect x="414" y="463" width="20" height="14" rx="2"/>
+    <!-- right arc -->
+    <rect x="1250" y="470" width="20" height="14" rx="2"/>
+    <rect x="1222" y="466" width="20" height="14" rx="2"/>
+    <rect x="1194" y="464" width="20" height="14" rx="2"/>
+    <rect x="1166" y="463" width="20" height="14" rx="2"/>
+  </g>
+
+  <g id="seatingMid" opacity="0.9" fill="#20242f">
+    <rect x="260" y="540" width="30" height="20" rx="3"/>
+    <rect x="298" y="534" width="30" height="20" rx="3"/>
+    <rect x="336" y="530" width="30" height="20" rx="3"/>
+    <rect x="374" y="528" width="30" height="20" rx="3"/>
+    <rect x="412" y="528" width="30" height="20" rx="3"/>
+
+    <rect x="1310" y="540" width="30" height="20" rx="3"/>
+    <rect x="1272" y="534" width="30" height="20" rx="3"/>
+    <rect x="1234" y="530" width="30" height="20" rx="3"/>
+    <rect x="1196" y="528" width="30" height="20" rx="3"/>
+    <rect x="1158" y="528" width="30" height="20" rx="3"/>
+  </g>
+
+  <g id="seatingNear" opacity="0.95">
+    <!-- left wing, larger, angled toward the cage -->
+    <g fill="#262b38">
+      <rect x="120" y="640" width="46" height="34" rx="4"/>
+      <rect x="176" y="628" width="46" height="34" rx="4"/>
+      <rect x="232" y="618" width="46" height="34" rx="4"/>
+      <rect x="288" y="610" width="46" height="34" rx="4"/>
+      <rect x="344" y="604" width="46" height="34" rx="4"/>
+    </g>
+    <g fill="#232734">
+      <rect x="96"  y="700" width="52" height="38" rx="4"/>
+      <rect x="158" y="686" width="52" height="38" rx="4"/>
+      <rect x="220" y="674" width="52" height="38" rx="4"/>
+      <rect x="282" y="666" width="52" height="38" rx="4"/>
+      <rect x="344" y="660" width="52" height="38" rx="4"/>
+    </g>
+    <!-- right wing -->
+    <g fill="#2b2530">
+      <rect x="1434" y="640" width="46" height="34" rx="4"/>
+      <rect x="1378" y="628" width="46" height="34" rx="4"/>
+      <rect x="1322" y="618" width="46" height="34" rx="4"/>
+      <rect x="1266" y="610" width="46" height="34" rx="4"/>
+      <rect x="1210" y="604" width="46" height="34" rx="4"/>
+    </g>
+    <g fill="#282230">
+      <rect x="1452" y="700" width="52" height="38" rx="4"/>
+      <rect x="1390" y="686" width="52" height="38" rx="4"/>
+      <rect x="1328" y="674" width="52" height="38" rx="4"/>
+      <rect x="1266" y="666" width="52" height="38" rx="4"/>
+      <rect x="1204" y="660" width="52" height="38" rx="4"/>
+    </g>
+    <!-- faint rim-light on the row edges nearest the cage glow -->
+    <g stroke="#f3c98a" stroke-width="1.2" opacity="0.18" fill="none">
+      <rect x="344" y="604" width="46" height="34" rx="4"/>
+      <rect x="1210" y="604" width="46" height="34" rx="4"/>
+    </g>
+  </g>
+
+  <!-- ============ OCTAGON CAGE ============ -->
+  <g transform="translate(800,650)">
+    <!-- ground shadow -->
+    <ellipse cx="0" cy="70" rx="330" ry="70" fill="#05060a" opacity="0.55" filter="url(#soft)"/>
+
+    <!-- fence collar -->
+    <polygon points="-300,-40 -150,-118 150,-118 300,-40 300,60 150,120 -150,120 -300,60"
+             fill="#14151b"/>
+    <!-- mat -->
+    <polygon points="-260,-30 -130,-98 130,-98 260,-30 260,50 130,100 -130,100 -260,50"
+             fill="url(#matGlow)"/>
+    <!-- mat seam lines -->
+    <g stroke="#a89a76" stroke-width="2" opacity="0.5">
+      <line x1="-260" y1="-30" x2="260" y2="50"/>
+      <line x1="260" y1="-30" x2="-260" y2="50"/>
+      <line x1="0" y1="-98" x2="0" y2="100"/>
+    </g>
+
+    <!-- fence mesh, stylised as thin verticals around the collar -->
+    <g stroke="#0a0a0d" stroke-width="1.6" opacity="0.55">
+      <line x1="-300" y1="-40" x2="-300" y2="60"/>
+      <line x1="-150" y1="-118" x2="-150" y2="120"/>
+      <line x1="0"    y1="-140" x2="0"    y2="140"/>
+      <line x1="150"  y1="-118" x2="150"  y2="120"/>
+      <line x1="300"  y1="-40"  x2="300"  y2="60"/>
+      <line x1="-225" y1="-82" x2="-225" y2="92"/>
+      <line x1="225"  y1="-82" x2="225"  y2="92"/>
+    </g>
+    <g stroke="#14151b" stroke-width="10" opacity="0.9">
+      <line x1="-300" y1="-40" x2="-300" y2="60"/>
+      <line x1="-150" y1="-118" x2="-150" y2="120"/>
+      <line x1="150"  y1="-118" x2="150"  y2="120"/>
+      <line x1="300"  y1="-40"  x2="300"  y2="60"/>
+    </g>
+
+    <!-- corner posts -->
+    <g fill="#0c0d10">
+      <rect x="-308" y="-52" width="16" height="26" rx="3"/>
+      <rect x="-158" y="-130" width="16" height="26" rx="3"/>
+      <rect x="142"  y="-130" width="16" height="26" rx="3"/>
+      <rect x="292"  y="-52" width="16" height="26" rx="3"/>
+    </g>
+
+    <!-- small corner stool -->
+    <g transform="translate(-250,30)">
+      <rect x="-10" y="-6" width="20" height="10" rx="2" fill="#1c1d24"/>
+      <line x1="-8" y1="4" x2="-8" y2="18" stroke="#1c1d24" stroke-width="3"/>
+      <line x1="8"  y1="4" x2="8"  y2="18" stroke="#1c1d24" stroke-width="3"/>
+    </g>
+  </g>
+
+  <!-- warm glow bleeding up off the mat -->
+  <ellipse cx="800" cy="700" rx="380" ry="90" fill="url(#canopyGlow)" opacity="0.4"/>
+
+  <!-- ============ FOREGROUND BARRIER ============ -->
+  <g>
+    <rect x="0" y="800" width="620" height="100" fill="#0c0d12" opacity="0.92"/>
+    <rect x="980" y="800" width="620" height="100" fill="#0c0d12" opacity="0.92"/>
+    <rect x="0" y="796" width="620" height="6" fill="#3a3e48"/>
+    <rect x="980" y="796" width="620" height="6" fill="#3a3e48"/>
+    <g stroke="#3a3e48" stroke-width="4" opacity="0.8">
+      <line x1="60"  y1="800" x2="60"  y2="900"/>
+      <line x1="220" y1="800" x2="220" y2="900"/>
+      <line x1="380" y1="800" x2="380" y2="900"/>
+      <line x1="540" y1="800" x2="540" y2="900"/>
+      <line x1="1060" y1="800" x2="1060" y2="900"/>
+      <line x1="1220" y1="800" x2="1220" y2="900"/>
+      <line x1="1380" y1="800" x2="1380" y2="900"/>
+      <line x1="1540" y1="800" x2="1540" y2="900"/>
+    </g>
+    <!-- central walkway steps -->
+    <polygon points="620,900 980,900 900,800 700,800" fill="#14151b"/>
+    <g stroke="#232430" stroke-width="2" opacity="0.7">
+      <line x1="650" y1="880" x2="950" y2="880"/>
+      <line x1="665" y1="855" x2="935" y2="855"/>
+      <line x1="680" y1="830" x2="920" y2="830"/>
+      <line x1="695" y1="805" x2="905" y2="805"/>
+    </g>
+  </g>
+
+  <!-- ============ VIGNETTE + GRAIN ============ -->
+  <rect x="0" y="0" width="1600" height="900" fill="url(#vignette)"/>
+  <rect x="0" y="0" width="1600" height="900" filter="url(#grain)" opacity="0.5"/>
+</svg>

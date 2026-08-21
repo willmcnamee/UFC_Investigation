@@ -128,16 +128,15 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
    as before: a row's height is 1/(sum of that row's aspect
    ratios), and each image's width in the row is its own aspect
    ratio times that height. Two rows of three:
-     row 1: McGregor + Ngannou + Jones  (h = 305.33 units)
-     row 2: Diaz + Rousey + Tsarukyan   (h = 226.99 units)
+     row 1: McGregor + Ngannou + Jones  (h = 338.20 units)
+     row 2: Diaz + Rousey + Tsarukyan   (h = 388.82 units)
    McGregor is grouped with the two narrowest photos so his row
-   — and therefore his tile — comes out tallest, keeping him the
-   single largest image while the other five land within about a
-   1.6x range of each other.
+   — and therefore his tile — comes out largest by area.
 
-   Source aspect ratios (w/h): McGregor 1685x1080, Ngannou 465x652,
-   Jones 553x552, Diaz 1901x1660, Rousey 1089x733,
-   Tsarukyan 976x550.
+   Source images are from Images_/Collage (swapped in from the
+   original Images/collage set). Source aspect ratios (w/h):
+   McGregor 4706x3118, Ngannou 816x1013, Jones 660x1028,
+   Diaz 820x1092, Rousey 1133x1737, Tsarukyan 866x741.
 ============================================================= */
 .firstScreen{
   min-height: 100vh;
@@ -717,8 +716,8 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
   width: 480px;
   max-width: 100%;
   height: 420px;
-  object-fit: cover;
-  object-position: top;
+  object-fit: contain;
+  object-position: center;
   border-radius: 4px;
   margin: 0 auto 10px;
 }

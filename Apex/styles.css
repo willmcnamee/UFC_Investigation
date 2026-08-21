@@ -90,7 +90,7 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
   z-index: -1;
   background:
     linear-gradient(rgba(18,15,15,0.8), rgba(18,15,15,0.8)),
-    url('Images/Apex.png');
+    url('Images/Apex.svg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -138,7 +138,7 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 }
 
 @media (max-width: 520px){
-  .hero__credit{ bottom: 14px; max-width: 60%; }
+  .hero__credit{ bottom: 14px; max-width: 40%; }
 }
 
 /* ============================================================
