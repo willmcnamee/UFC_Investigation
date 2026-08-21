@@ -149,6 +149,23 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 .lede__col h3{ font-size: 20px; margin: 8px 0 18px; color: var(--ink); }
 
 /* ============================================================
+   STAT ROW — ported from astyles.css / scstyles.css (Apex,
+   Sporting Congestion), where it's byte-identical. Reused here
+   for the interviewee introduction cards; .statRow__card p is
+   the one addition, needed because this usage adds a third line
+   (a one-sentence descriptor) that the original two-line
+   b + span component didn't define.
+============================================================= */
+.statRow{ display:flex; gap: 16px; flex-wrap: wrap; margin: 47px 0; }
+.statRow__card{
+  flex: 1 1 160px; background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 4px; padding: 16px 18px; font-family: var(--font-mono);
+}
+.statRow__card b{ display:block; font-size: 26px; color: var(--amber); }
+.statRow__card span{ display:block; font-size: 12px; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+.statRow__card p{ font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--ink-dim); margin: 8px 0 0; }
+
+/* ============================================================
    CHART TOOLTIP (shared by every bar chart)
 ============================================================= */
 .chartTooltip{
