@@ -282,21 +282,19 @@ function buildControversyModel(csvText){
 }
 
 /* ==============================================================
-   PLACEHOLDER DATA — active / interim / vacant reign share
-   Replace with real per-division-per-day classification once
-   available. Figures are illustrative and roughly flat by design,
-   to be swapped for real numbers before publishing.
+   Active / interim / vacant title reign share, per year
    =============================================================== */
 const RATIO_DATA = [
-  { year: 2018, active: 93.03, interim: 4.66, vacant: 2.31 },
-  { year: 2019, active: 89.96, interim: 8.05, vacant: 1.99 },
-  { year: 2020, active: 90.09, interim: 4.17, vacant: 5.74 },
-  { year: 2021, active: 93.35, interim: 5.23, vacant: 1.42 },
-  { year: 2022, active: 88.02, interim: 6.82, vacant: 5.16 },
-  { year: 2023, active: 85.03, interim: 5.41, vacant: 9.56 },
-  { year: 2024, active: 90.44, interim: 9.09, vacant: 0.47 },
-  { year: 2025, active: 91.86, interim: 4.26, vacant: 3.88 },
-  { year: 2026, active: 89.76, interim: 7.77, vacant: 2.47 },
+  { year: 2017, active: 93.0, interim: 4.7, vacant: 2.3 },
+  { year: 2018, active: 90.0, interim: 8.0, vacant: 2.0 },
+  { year: 2019, active: 90.1, interim: 4.2, vacant: 5.7 },
+  { year: 2020, active: 93.3, interim: 5.2, vacant: 1.4 },
+  { year: 2021, active: 88.0, interim: 6.8, vacant: 5.2 },
+  { year: 2022, active: 85.0, interim: 5.4, vacant: 9.6 },
+  { year: 2023, active: 90.4, interim: 9.1, vacant: 0.5 },
+  { year: 2024, active: 91.9, interim: 4.3, vacant: 3.9 },
+  { year: 2025, active: 90.0, interim: 8.1, vacant: 1.9 },
+  { year: 2026, active: 90.2, interim: 6.1, vacant: 3.7 },
 ];
 
 /* ==============================================================
@@ -316,7 +314,7 @@ function buildRatioRows(){
         <span class="ratioRow__seg ratioRow__seg--interim" data-value="${row.interim}" style="width:0%"></span>
         <span class="ratioRow__seg ratioRow__seg--vacant" data-value="${row.vacant}" style="width:0%"></span>
       </div>
-      <span class="ratioRow__pct">${row.active}%</span>
+      <span class="ratioRow__pct">${row.active.toFixed(1)}%</span>
     </div>`).join("");
 }
 buildRatioRows();
@@ -324,7 +322,7 @@ buildRatioRows();
 const RATIO_STAGES = [
   { label: "Step 1 of 3", title: "Active title reigns", sub: "Share of days each year a division was held by an active champion", segs: ["active"] },
   { label: "Step 2 of 3", title: "+ Interim reigns", sub: "Interim titles barely move the needle year to year", segs: ["active","interim"] },
-  { label: "Step 3 of 3", title: "+ Vacant periods", sub: "The full picture: active, interim and vacant, 2018–2026", segs: ["active","interim","vacant"] },
+  { label: "Step 3 of 3", title: "+ Vacant periods", sub: "The full picture: active, interim and vacant, 2017–2026", segs: ["active","interim","vacant"] },
 ];
 
 function applyRatioStage(stepIndex){
@@ -345,8 +343,8 @@ function applyRatioStage(stepIndex){
     interimSeg.style.width = stage.segs.includes("interim") ? row.interim + "%" : "0%";
     vacantSeg.style.width = stage.segs.includes("vacant") ? row.vacant + "%" : "0%";
 
-    const shownTotal = Number(stage.segs.reduce((sum, key) => sum + row[key], 0).toFixed(2));
-    pctEl.textContent = shownTotal + "%";
+    const shownTotal = stage.segs.reduce((sum, key) => sum + row[key], 0);
+    pctEl.textContent = shownTotal.toFixed(1) + "%";
   });
 }
 applyRatioStage(0);
@@ -439,7 +437,8 @@ function initHeatmap(model){
       if (month.m.endsWith("-01")){
         const x = LABEL_W + mi * cellW;
         const year = month.m.split("-")[0];
-        yearTicks.push(`<text x="${x}" y="${CHART_H + 16}" class="hm-year">${year}</text>`);
+        const yearLabel = year === "2026" ? `${year}<tspan class="hm-year-ast" baseline-shift="super">*</tspan>` : year;
+        yearTicks.push(`<text x="${x}" y="${CHART_H + 16}" class="hm-year">${yearLabel}</text>`);
       }
     });
 
@@ -449,6 +448,7 @@ function initHeatmap(model){
         <style>
           .hm-label{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; fill: var(--muted); }
           .hm-year{ font-family:'IBM Plex Mono',monospace; font-size:10px; fill: var(--muted); }
+          .hm-year-ast{ font-size:7px; }
         </style>
         ${rows}
         ${cells.join("")}

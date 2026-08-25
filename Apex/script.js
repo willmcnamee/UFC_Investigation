@@ -308,7 +308,7 @@ async function initApexUsageChart(){
           </div>
         </div>
         <div class="axisChart__xaxis barChart__row">
-          ${APEX_USAGE.map(d => `<div class="axisChart__xaxis-col"><span class="barChart__label">${d.year}</span></div>`).join("")}
+          ${APEX_USAGE.map(d => `<div class="axisChart__xaxis-col"><span class="barChart__label">${d.year}${d.year === 2026 ? "<sup>*</sup>" : ""}</span></div>`).join("")}
         </div>
       </div>
       <p class="axisChart__xlabel">Year</p>
@@ -438,7 +438,7 @@ async function initVegasChart(){
             </div>
           </div>
           <div class="axisChart__xaxis miniChart__row">
-            ${years.map(year => `<div class="axisChart__xaxis-col"><span class="miniChart__label">${year}</span></div>`).join("")}
+            ${years.map(year => `<div class="axisChart__xaxis-col"><span class="miniChart__label">${year}${year === 2026 ? "<sup>*</sup>" : ""}</span></div>`).join("")}
           </div>
         </div>
         <p class="axisChart__xlabel">Year</p>
@@ -520,7 +520,7 @@ async function initVegasChart(){
   }
 
   const VEGAS_CHARTS = {
-    total: () => buildBigChart({ type: "single", values: VEGAS_DATA.totalUSEvents, barClass: "miniChart__bar--total", title: "Total UFC events held in the US, per year", unitLabel: "US events", yLabel: "US events" }),
+    total: () => buildBigChart({ type: "single", values: VEGAS_DATA.totalUSEvents, barClass: "miniChart__bar--total", title: "Total UFC events held in the US, per year", unitLabel: "US events", yLabel: "US events", markPartialYear: true }),
     stacked: () => buildBigChart({ type: "stacked", apex: VEGAS_DATA.apexEvents, nonApex: VEGAS_DATA.nonApexEvents, title: "Apex vs non-Apex UFC events held in the US" }),
     cities: () => buildBigChart({ type: "single", values: VEGAS_DATA.distinctCities, barClass: "miniChart__bar--cities", title: "Distinct US cities hosting a UFC card", unitLabel: "distinct cities", yLabel: "Distinct cities", markPartialYear: true }),
   };
@@ -640,46 +640,6 @@ function initDealTimeline(){
   layout();
 }
 initDealTimeline();
-
-/* ==============================================================
-   NATIONALITIES DIVERGING BAR CHART
-   =============================================================== */
-const natChartEl = document.getElementById("natChart");
-const maxChamps = Math.max(...NATIONALITY_DATA.map(d => d.champions));
-const maxEvents = Math.max(...NATIONALITY_DATA.map(d => d.eventsHosted));
-
-natChartEl.innerHTML = `
-  <div class="natChart__head">
-    <span>Country</span>
-    <span>Champions</span>
-    <span></span>
-    <span>Events hosted there</span>
-    <span></span>
-  </div>
-  ${NATIONALITY_DATA.map(d => `
-    <div class="natRow" data-champ-target="${(d.champions / maxChamps * 100).toFixed(1)}" data-event-target="${maxEvents ? (d.eventsHosted / maxEvents * 100).toFixed(1) : 0}">
-      <span class="natRow__name">${d.nationality}</span>
-      <div class="natRow__champTrack"><div class="natRow__champBar" style="width:0%"></div></div>
-      <span class="natRow__champVal">${d.champions}</span>
-      <div class="natRow__eventTrack"><div class="natRow__eventBar ${d.eventsHosted === 0 ? 'is-zero' : ''}" style="width:0%"></div></div>
-      <span class="natRow__eventVal">${d.eventsHosted}</span>
-    </div>`).join("")}
-`;
-
-const natObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting){
-      entry.target.querySelectorAll(".natRow").forEach(row => {
-        const champBar = row.querySelector(".natRow__champBar");
-        const eventBar = row.querySelector(".natRow__eventBar");
-        champBar.style.width = row.dataset.champTarget + "%";
-        eventBar.style.width = row.dataset.eventTarget + "%";
-      });
-      natObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.3 });
-natObserver.observe(natChartEl);
 
 /* ==============================================================
    HERO SCROLL CUE
