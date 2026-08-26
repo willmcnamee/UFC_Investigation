@@ -1,10 +1,5 @@
-/* ==============================================================
-   SCROLL REVEAL — generic fade/rise-in on scroll, wrapped in its
-   own IIFE so its locals (prefersReducedMotion, revealEls,
-   revealObserver) can never collide with this file's other
-   top-level scroll/observer logic (e.g. prefersReducedMotionHM,
-   ratioObserver).
-   =============================================================== */
+/* Fade/rise-in on scroll. Scoped in an IIFE so its locals don't
+   collide with the other scroll/observer logic below. */
 (function () {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const revealEls = document.querySelectorAll(".reveal");
@@ -25,25 +20,16 @@
   }
 })();
 
-/* ==============================================================
-   DATA NOTE
-   ------------------------------------------------------------
-   The controversial-title-reigns heatmap is now built entirely at
-   runtime by fetching and parsing Events_with_controversy.csv,
-   which must sit in the same folder as this script. Nothing about
-   the heatmap is hardcoded any more — edit the CSV and reload the
-   page to see it reflected.
+/* The controversial-title-reigns heatmap is built at runtime by fetching
+   and parsing Events_with_controversy.csv, which must sit alongside this
+   script — edit the CSV and reload the page to see it reflected.
 
-   This relies on the browser's fetch() API, which most browsers
-   block for file:// pages (CORS). Serve this folder over a local
-   web server while developing, e.g. VS Code's "Live Server"
-   extension, or `python -m http.server` from this folder, then
-   open the http://localhost URL it gives you.
+   fetch() is blocked for file:// pages by CORS in most browsers, so serve
+   this folder over a local web server while developing (e.g. VS Code's
+   "Live Server" extension, or `python -m http.server`) and open the
+   http://localhost URL it gives you.
+ */
 
-   RATIO_DATA further down (active / interim / vacant share) is
-   still PLACEHOLDER — no equivalent daily dataset has been
-   supplied for that chart yet.
-   =============================================================== */
 const CONTROVERSY_CSV_PATH = "Events_with_controversy.csv";
 const DIVISION_NAMES = {"WSW":"Women's Strawweight","WFLW":"Women's Flyweight","WBW":"Women's Bantamweight","FLW":"Flyweight","BW":"Bantamweight","FW":"Featherweight","LW":"Lightweight","WW":"Welterweight","MW":"Middleweight","LHW":"Light Heavyweight","HW":"Heavyweight"};
 
@@ -51,24 +37,19 @@ const DIVISION_NAMES = {"WSW":"Women's Strawweight","WFLW":"Women's Flyweight","
    CSV PARSING + AGGREGATION
    ------------------------------------------------------------
    Each CSV row describes one reign segment for a division, from
-   "Date" to "End date". Whenever that row's "Controversy" column
-   is 1, every day of that segment counts as controversial — the
-   controversial days are ("Date", "End date"], i.e. the start day
-   itself is excluded and the end day is included, which matches
-   how "Days in state" is computed elsewhere in the sheet.
+   "Date" to "End date". Where "Controversy" is 1, every day of that
+   segment counts as controversial: the range is ("Date", "End date"],
+   start excluded and end included, matching "Days in state" elsewhere
+   in the sheet.
 
-   Note the "Controversy Start Date" / "Controversy End Date"
-   columns are NOT used to compute day counts (verified against
-   the sheet's own numbers: several controversial rows have Start/
-   End dates that fall outside the row's own Date/End date range,
-   e.g. describing when a dispute was first reported vs. when the
-   reign itself ran — using them as the day range overcounts).
-   They're left in the CSV as narrative reference only.
+   The "Controversy Start/End Date" columns describe when the dispute
+   itself was reported, not the reign range, so they aren't used for
+   day counts — they're narrative reference only (surfaced in the
+   heatmap tooltip).
 
-   Controversial days are collected into a per-division Set of ISO
-   day strings before counting, so that two adjacent/duplicated
-   rows referencing the same underlying dispute don't get double
-   counted.
+   Controversial days are collected into a per-division Set of ISO day
+   strings before counting, so duplicate/overlapping rows for the same
+   dispute don't get double counted.
    =============================================================== */
 function splitCSVLine(line){
   // Handles quoted fields (which may themselves contain commas, e.g. the
@@ -255,8 +236,7 @@ function buildControversyModel(csvText){
     if (streak.len > 0) streaks.push({ division, ...streak });
   });
 
-  // Auto-generate annotations for the most notable streaks (mirrors the
-  // hand-picked call-outs this heatmap used to ship with, but derived live).
+  // Auto-generate annotations for the most notable streaks.
   const topStreaks = streaks.slice().sort((a, b) => b.len - a.len).slice(0, 4);
   const annotations = {};
   topStreaks.forEach(s => {

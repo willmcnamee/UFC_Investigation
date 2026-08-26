@@ -112,31 +112,16 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 
 /* ============================================================
    COLLAGE — SIX FIGHTERS
-   Built as one inline SVG rather than an HTML grid so it can do
-   something CSS grid/flexbox can't: scale the *whole* mosaic,
-   uniformly, to fit inside the viewport on both axes at once
-   with zero cropping — exactly like object-fit: contain, but for
-   an arbitrary composition instead of a single image. The
-   viewBox is the mosaic's true zero-crop size, and the SVG's
-   default preserveAspectRatio ("xMidYMid meet") shrinks that
-   uniformly to fit the element's rendered box, letterboxing
-   (not cropping) whichever axis has slack.
-
-   Each <image>'s x/y/width/height is precomputed so its own box
-   is exactly that photo's aspect ratio (so nothing inside gets
-   stretched or cropped either) — the same "justified row" maths
-   as before: a row's height is 1/(sum of that row's aspect
-   ratios), and each image's width in the row is its own aspect
-   ratio times that height. Two rows of three:
+   Built as one inline SVG rather than an HTML grid so the whole
+   mosaic scales uniformly to fit the viewport on both axes with
+   zero cropping (like object-fit: contain, but for a composition
+   rather than a single image). Each <image>'s x/y/width/height is
+   precomputed to its own photo's aspect ratio using a justified-row
+   layout: two rows of three, row height = 1 / (sum of that row's
+   aspect ratios), each image's width = its aspect ratio × that
+   height.
      row 1: McGregor + Ngannou + Jones  (h = 338.20 units)
      row 2: Diaz + Rousey + Tsarukyan   (h = 388.82 units)
-   McGregor is grouped with the two narrowest photos so his row
-   — and therefore his tile — comes out largest by area.
-
-   Source images are from Images_/Collage (swapped in from the
-   original Images/collage set). Source aspect ratios (w/h):
-   McGregor 4706x3118, Ngannou 816x1013, Jones 660x1028,
-   Diaz 820x1092, Rousey 1133x1737, Tsarukyan 866x741.
 ============================================================= */
 .firstScreen{
   min-height: 100vh;
@@ -165,11 +150,9 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 .collage__mobile{ display:none; }
 
 @media (max-width: 880px){
-  /* The SVG's uniform "contain" scaling would shrink this whole
-     landscape mosaic to a tiny strip on a narrow portrait screen,
-     so swap it for a simple full-width stack instead — same
-     zero-crop principle (each image at its own natural aspect
-     ratio), just one photo per row and the first screen scrolls. */
+  /* The SVG's uniform "contain" scaling shrinks this landscape mosaic
+     to a tiny strip on a narrow portrait screen, so swap it for a
+     full-width stack of one photo per row instead. */
   .collage{ display:block; padding: 0; }
   .collage__svg{ display:none; }
   .collage__mobile{ display:block; }
@@ -724,13 +707,9 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 
 /* ============================================================
    PHOTO CREDIT — inline caption
-   Small credit line sitting directly beneath a standalone image,
-   muted font-mono treatment matching .outro__sources. Carries the
-   28px gap .fighterImage used to have before the prose column, so
-   captioned and uncaptioned images keep the same rhythm. !important
-   on size/color/margin because it's a <p> inside .lede, and .lede p
-   (below) otherwise outranks a single class selector — same reason
-   .lede__tag and .outro__sources use !important.
+   Small credit line beneath a standalone image, muted font-mono
+   treatment matching .outro__sources. !important overrides .lede p
+   below it, same as .lede__tag and .outro__sources.
 ============================================================= */
 .photoCredit{
   display:block;
@@ -745,24 +724,10 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 /* ============================================================
    FIGHTER CHAPTER TIMELINE RAIL
    ------------------------------------------------------------
-   A sticky vertical rail of dated "beats" running down the left
-   edge of each fighter chapter (.fighterChapter, desktop only),
-   collapsing below 880px to a slim horizontal progress strip
-   pinned to the top of the viewport for the duration of that
-   chapter — same sticky/mobile-collapse convention as .tablestory
-   above, just vertical instead of horizontal, and it never moves
-   or pins the reading column itself (no scroll-jacking).
-
-   Node dates are read verbatim out of each fighter's own prose
-   (e.g. "June 2025", "in 2026") — never invented. Where a beat's
-   sentence only states a year, the node is labelled with just
-   that year. script.js pairs every rail node (li.chapterRail__node
-   [data-node]) with a matching <span class="timelineAnchor"> marker
-   wrapped around the corresponding phrase in the paragraph, and
-   uses an IntersectionObserver to light up whichever node's marker
-   is currently crossing the reading line, filling the rail (and,
-   on mobile, the strip) up to that point via the --rail-progress
-   custom property.
+   Sticky vertical rail of dated "beats" down the left edge of each
+   fighter chapter (.fighterChapter, desktop only), collapsing below
+   880px to a horizontal progress strip pinned to the viewport top.
+   Driven by script.js via the --rail-progress custom property.
 ============================================================= */
 .fighterChapter{
   display:flex;

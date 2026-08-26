@@ -1,16 +1,6 @@
-/* ==============================================================
-   SCROLL REVEAL
-   ------------------------------------------------------------
-   Generic fade/rise-in utility for static prose sections (see
-   .reveal / .reveal-group in styles.css). Wrapped in its own IIFE
-   so it doesn't collide with the top-level `prefersReducedMotion`
-   declared further down (in the HORIZONTAL SCROLLYTELLING block),
-   and placed here at the very top of the file — rather than after
-   that block — because the HORIZONTAL SCROLLYTELLING code currently
-   throws (its #horiz target is commented out in index.html, see the
-   NB note near that block), which halts every subsequent top-level
-   statement in this file for the rest of the load.
-   =============================================================== */
+/* Fade/rise-in on scroll for static prose sections (see .reveal /
+   .reveal-group in styles.css). Scoped in an IIFE so its locals don't
+   collide with the horizontal-scrollytelling block further down. */
 (function () {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const revealEls = document.querySelectorAll(".reveal");
@@ -32,17 +22,16 @@
 })();
 
 /* ==============================================================
-   PLACEHOLDER DATA
+   FIGHTER DATA
    ------------------------------------------------------------
-   Every value below is illustrative only. Replace with verified
-   figures before publishing:
-     - followers: Instagram follower count, source TBC
-       (https://www.sacnilk.com/news/List_Of_Most_Followed_UFC_on_Instagram)
-     - retired:     true if 100% retired from competition
-     - fought2026:  true if fighter has fought OR has a fight
-                    officially scheduled in 2026
-     - dispute:     true if fighter has publicly disputed UFC
-                    business practices / matchmaking / pay
+   followers: Instagram follower count, via sacnilk.com
+     (https://www.sacnilk.com/news/List_Of_Most_Followed_UFC_on_Instagram)
+   retired:     true if 100% retired from competition
+   fought2026:  true if fighter has fought OR has a fight
+                officially scheduled in 2026
+   dispute:     true if fighter has publicly disputed UFC
+                business practices / matchmaking / pay
+
    =============================================================== */
 const FIGHTERS = [
   { rank: 1,  name: "Conor McGregor",      followers: "46.39M", retired: false, fought2026: true,  dispute: true  },
@@ -111,9 +100,8 @@ function fitTableToViewport(){
 
   const root = document.documentElement.style;
 
-  // Below the 880px breakpoint the stage is laid out statically (see
-  // .tablestory__stage in styles.css), so the page scrolls normally and
-  // none of the viewport-fitting below is needed — reset to defaults.
+  // Below the 880px breakpoint .tablestory__stage lays out statically
+  // (see styles.css) and the page scrolls normally, so reset to defaults.
   if (getComputedStyle(stage).position !== "sticky"){
     root.removeProperty("--row-pad-v");
     root.removeProperty("--row-font");
@@ -138,22 +126,16 @@ function fitTableToViewport(){
     parseFloat(stageStyles.paddingBottom) +
     2; // border allowance on tableWrap
 
-  // Only a tiny epsilon here — a real floor (e.g. 240) would force the
-  // table to claim more height than is actually left on a short
-  // viewport, which is exactly what was pushing the legend off screen.
+  // Only a small epsilon floor, so the table never claims more height
+  // than is actually left on a short viewport.
   const available = Math.max(window.innerHeight - chrome, 20);
 
-  // No lower bound on row height here (only an upper cap, for large
-  // screens) — every size below is a plain fraction of it, so the 16
-  // rows always add up to exactly `available` and all 15 fighters stay
-  // on screen with no internal scrolling, however short the viewport.
+  // Only an upper cap on row height (for large screens) — every size
+  // below is a fraction of it, so all 16 rows fit `available` exactly.
   const rowHeight = Math.min(available / TOTAL_TABLE_ROWS, 42);
 
-  // Everything below is derived from the SAME per-row content budget,
-  // so the tallest element in a row (the status-tag pill, which has
-  // its own padding stacked on top of its own text) is guaranteed to
-  // fit within rowHeight rather than being sized independently and
-  // silently overflowing it.
+  // Derived from the same per-row budget so the status-tag pill (the
+  // tallest element in a row) always fits within rowHeight.
   const padV = Math.min(rowHeight * 0.22, 10);
   const contentAvail = Math.max(rowHeight - padV * 2 - 1, 1); // -1 for row border
   const lineHeightRatio = 1.15;
@@ -302,24 +284,15 @@ steps.forEach(s => stepObserver.observe(s));
 /* ==============================================================
    FIGHTER CHAPTER TIMELINE RAIL
    ------------------------------------------------------------
-   Drives the sticky side rail / mobile progress strip added to
-   each .fighterChapter in index.html (see the matching CSS note
-   in styles.css for how node dates were derived from the prose).
+   Drives the sticky side rail / mobile progress strip on each
+   .fighterChapter in index.html. Each rail node
+   (li.chapterRail__node[data-node]) is paired by index with a
+   <span class="timelineAnchor" data-node> marker in that fighter's
+   paragraph. An IntersectionObserver band near the top of the
+   viewport detects which marker the reader is passing, marks the
+   matching node active, and sets --rail-progress to advance the
+   rail's fill line (and the mobile strip's fill).
 
-   Each chapter's rail nodes (li.chapterRail__node[data-node]) are
-   paired by index with <span class="timelineAnchor" data-node>
-   markers wrapped around the corresponding phrase in that
-   fighter's paragraph. A thin IntersectionObserver band near the
-   top of the viewport — the same technique as the .step observer
-   above — detects which marker the reader is currently passing,
-   marks the matching node active, and sets --rail-progress so the
-   rail's fill line (and the mobile strip's fill) advances to it.
-
-   NB: placed ahead of the HORIZONTAL SCROLLYTELLING block below
-   because that block's #horiz target is currently commented out
-   in index.html — document.getElementById("horiz") returns null
-   there and the subsequent .querySelector() throws, which would
-   otherwise stop this script before it reached this point.
    =============================================================== */
 document.querySelectorAll(".fighterChapter").forEach(chapter => {
   const nodes = Array.from(chapter.querySelectorAll(".chapterRail__node"));

@@ -149,12 +149,9 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 .lede__col h3{ font-size: 20px; margin: 8px 0 18px; color: var(--ink); }
 
 /* ============================================================
-   STAT ROW — ported from astyles.css / scstyles.css (Apex,
-   Sporting Congestion), where it's byte-identical. Reused here
-   for the interviewee introduction cards; .statRow__card p is
-   the one addition, needed because this usage adds a third line
-   (a one-sentence descriptor) that the original two-line
-   b + span component didn't define.
+   STAT ROW — shared pattern with the Apex / Sporting Congestion
+   pieces. .statRow__card p adds a third line (descriptor) on top
+   of the original two-line b + span component.
 ============================================================= */
 .statRow{ display:flex; gap: 16px; flex-wrap: wrap; margin: 47px 0; }
 .statRow__card{

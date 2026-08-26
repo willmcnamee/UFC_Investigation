@@ -1,11 +1,5 @@
-/* ==============================================================
-   SCROLL REVEAL — generic fade/rise-in on scroll for static prose
-   sections (lede, outros, bridge, vox pop). Wrapped in its own
-   IIFE so it can't collide with this file's top-level names.
-   Does NOT touch anything already driven by the scrollytelling
-   observers below (apexObserver, vegasObserver, dealTrack scroll
-   handler, natObserver) — those elements never get a .reveal class.
-   =============================================================== */
+/* Fade/rise-in on scroll for static prose sections. Scoped in an
+   IIFE to avoid colliding with the scrollytelling observers below. */
 (function () {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const revealEls = document.querySelectorAll(".reveal");
@@ -26,39 +20,15 @@
   }
 })();
 
-/* ==============================================================
-   DATA NOTE
-   ------------------------------------------------------------
-   APEX_USAGE is loaded at runtime from "Apex data.csv" (sitting
-   alongside this file), which is the "Apex Data" tab of the
-   source workbook: a per-venue pivot, 2018–2026, plus summary
-   rows ("Apex", "Non-Apex", "Year", "Apex %", "Non-Apex %").
-     - "Apex" = UFC Apex 2020–2025 combined with its 2026 rebrand,
-       "Meta Apex" (9 events) — same building, new sponsor name.
-     - Apex % is Apex's share of *all* UFC events worldwide that
-       year, not just US ones.
-     - 2026 figures are partial-year (YTD) — flagged in the UI.
+/* APEX_USAGE and VEGAS_DATA are both loaded at runtime from "Apex data.csv"
+   (the Apex Data / City pivot tables from the source workbook, 2018–2026).
+   "Apex" combines UFC Apex 2020–2025 with its 2026 rebrand, Meta Apex. Apex %
+   is Apex's share of the *global* UFC calendar, not just US events. 2026
+   figures are partial-year (YTD), flagged in the UI.
 
-   VEGAS_DATA is also loaded at runtime from "Apex data.csv", from
-   the "City" pivot table appended below the Apex Data tab (each
-   US city's share of that year's US events, plus a distinct-city
-   count row). That table only stores percentages, not raw counts,
-   so the raw per-year US event total is recovered by finding the
-   integer that every city's percentage rounds cleanly back to
-   (see inferYearTotal) — cross-checked against the previously
-   hardcoded totals and it lands on an exact match for every year.
-   Apex/non-Apex counts per year still come from the Apex Data
-   rows loaded by loadApexUsage().
-
-   NATIONALITY_DATA's eventsHosted (per-country totals) is still
-   hardcoded — the City pivot only covers US cities, not countries,
-   so it can't be derived from what's in the CSV yet.
-
-   DEAL_TIMELINE (streaming deals) and the CHAMPION COUNTS in
-   NATIONALITY_DATA are still PLACEHOLDER — no broadcast-deal or
-   champion-roster data was supplied. Fan quotes remain
-   placeholder pending real, consented interviews.
-   =============================================================== */
+   The City pivot only stores per-city percentages, not raw counts, so the
+   per-year US event total is recovered in inferYearTotal() by finding the
+   integer every city's percentage rounds back to cleanly. */
 
 /* Minimal CSV parser: handles quoted fields, embedded commas/quotes. */
 function parseCSV(text){
@@ -177,10 +147,8 @@ const DEAL_TIMELINE = [
   { year: "2026", text: "Meta and the UFC sign a five-year deal to rename the UFC Apex to the Meta Apex." },
 ];
 
-// Champion nationality vs. events hosted in that country.
-// "champions" (roster/nationality assignment) is PLACEHOLDER — no
-// champion data was supplied. "eventsHosted" is REAL, taken from
-// the Country grand-total column in Apex_research_-_Summary.csv
+// Champion nationality vs. events hosted in that country. eventsHosted is
+// taken from the Country grand-total column in Apex_research_-_Summary.csv
 // (2016–2026 totals; countries absent from the sheet = 0 events).
 const NATIONALITY_DATA = [
   { nationality: "United States", champions: 4, eventsHosted: 315 },
@@ -600,8 +568,8 @@ function initDealTimeline(){
   const cards = Array.from(track.children);
   const isPinned = () => window.matchMedia("(min-width: 881px)").matches;
   // How much extra vertical scroll the section demands per pixel the
-  // track actually travels horizontally. 1 = 1:1 (old behavior); higher
-  // = more scrolling needed to move between cards.
+  // track actually travels horizontally. 1 = 1:1; higher = more
+  // scrolling needed to move between cards.
   const SCROLL_SENSITIVITY = 1.8;
   let maxShift = 0;
 

@@ -1,9 +1,6 @@
-/* ==============================================================
-   SCROLL REVEAL — generic fade/rise-in observer for ".reveal"
-   elements (static prose blocks, headings, quote cards, etc.).
-   Wrapped in its own IIFE so it can't collide with any of this
-   file's other top-level names (e.g. the ticketObserver below).
-   ============================================================== */
+/* Fade/rise-in on scroll for ".reveal" elements (static prose
+   blocks, headings, quote cards). Scoped in an IIFE to avoid
+   colliding with the ticketObserver below. */
 (function () {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const revealEls = document.querySelectorAll(".reveal");
@@ -24,21 +21,11 @@
   }
 })();
 
-/* ==============================================================
-   DATA NOTE
-   ------------------------------------------------------------
-   TICKET_PRICE_DATA is REAL, supplied 2026-08-14. "price" is the
-   average UFC ticket price per year adjusted for inflation, in 2007
-   $ terms (this is what the chart plots, per the "ADJUSTED FOR
-   INFLATION" instruction in the article copy). "nominal" is the
-   unadjusted average price that year, shown alongside it in the
-   chart tooltip for context only — it is not plotted.
-
-   Cluster averages (2007–2015 vs 2016–2026) and the ratio between
-   them are computed live from this array in ticketClusterStats(),
-   not hardcoded, and match the source figures supplied: $124.80 vs
-   $269.72, a 2.16× (116.13%) increase.
-   =============================================================== */
+/* "price" is the average UFC ticket price per year, adjusted for inflation
+   to 2007 $ terms (what the chart plots). "nominal" is the unadjusted
+   average price that year, shown in the tooltip for context only.
+   Cluster averages (2007–2015 vs 2016–2026) and their ratio are computed
+   live from this array in ticketClusterStats(), not hardcoded. */
 const TICKET_PRICE_DATA = [
   { year: 2007, price: 151.95, nominal: 157.78 },
   { year: 2008, price: 72.84, nominal: 190.51 },
@@ -229,14 +216,11 @@ function setTicketBarColours(clustered){
   });
 }
 
-/* Draws a dashed mean-price line across each era's own bars (not
-   the full chart width), labelled with that era's average. Span
-   edges are measured from the actual rendered bar columns (via
-   getBoundingClientRect) rather than derived from column count,
-   because the flex gaps between columns mean N/total columns isn't
-   the same fraction of width as N columns' worth of actual pixels —
-   using column count alone drifts the boundary left of where the
-   bars really are, increasingly so further into the row. */
+/* Draws a dashed mean-price line across each era's own bars (not the
+   full chart width), labelled with that era's average. Span edges are
+   measured from the rendered bar columns via getBoundingClientRect
+   rather than column count, since flex gaps make column count an
+   unreliable proxy for pixel position. */
 function buildTicketMeanLines(){
   const plot = ticketChartEl.querySelector(".axisChart__plot");
   if (!plot) return;

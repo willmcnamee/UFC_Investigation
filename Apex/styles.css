@@ -115,14 +115,8 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 
 /* ============================================================
    PHOTO CREDIT — overlay
-   Same muted font-mono treatment as .photoCredit / figcaption,
-   pinned to a bottom corner of the hero for the background-image
-   hero, which has no <img> to caption underneath. Sits opposite
-   .scroll-cue so the two never collide. Nudged in slightly from
-   the right edge (a small fraction of the original 140px pull-in,
-   which sat too far from the corner) to clear the brightest edge
-   of the red support beam in Apex.png without drifting far from
-   where it originally sat.
+   Pinned to a bottom corner of the hero (which has no <img> to
+   caption underneath), opposite .scroll-cue.
 ============================================================= */
 .hero__credit{
   position: absolute;
@@ -208,19 +202,15 @@ h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; letter-sp
 .dot--paleblue{ background: var(--paleblue); }
 
 /* ============================================================
-   AXIS BAR CHART (Apex usage) â€” real y-axis of event counts,
+   AXIS BAR CHART (Apex usage) — real y-axis of event counts,
    sized to match the Vegas dominance chart below it
 ============================================================= */
 .axisChart{
   border: 1px solid var(--line); border-radius: 4px; background: var(--surface);
   padding: 16px clamp(14px,2.4vw,24px) 12px;
 }
-/* Grid, not flex: the plot (row 1) and the year-label strip (row 2)
-   are separate tracks so the axis lines sit exactly on the plot's
-   own edges — border-left lands right of the tick numbers, and
-   border-bottom lands right above the year row, instead of both
-   being drawn through whatever the bottom-anchored bar+label flex
-   stack happened to leave free. */
+/* Grid layout so the plot and year-label strip are separate tracks —
+   keeps the axis lines flush with the plot's own edges. */
 .axisChart__inner{
   display:grid;
   grid-template-columns: auto 30px 1fr;
